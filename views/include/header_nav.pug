@@ -1,0 +1,23 @@
+header.main-header
+  // Logo
+  a.logo(href='/')
+    // mini logo for sidebar mini 50x50 pixels
+    span.logo-mini
+      b T-
+      | An
+    // logo for regular state and mobile devices
+    span.logo-lg
+      b Tama-
+      | Analytics
+  // Header Navbar: style can be found in header.less
+  nav.navbar.navbar-static-top
+    // Sidebar toggle button
+    a.sidebar-toggle(href='#', data-toggle='offcanvas', role='button')
+      span.sr-only Toggle navigation
+    // Navbar Right Menu
+    .navbar-custom-menu
+      ul.nav.navbar-nav
+        include ./dropdowns/messages_dropdown.pug
+        include ./dropdowns/notifications_dropdown.pug
+        include ./dropdowns/tasks_dropdown.pug
+        include ./dropdowns/user-menu_dropdown.pug

@@ -1,0 +1,39 @@
+// better in ".col-md-8" (<div class='.col-md-8'></div>)
+// MAP & BOX PANE
+.box.box-success
+  .box-header.with-border
+    h3.box-title Visitors Report
+    .box-tools.pull-right
+      button.btn.btn-box-tool(type='button', data-widget='collapse')
+        i.fa.fa-minus
+      button.btn.btn-box-tool(type='button', data-widget='remove')
+        i.fa.fa-times
+  // /.box-header
+  .box-body.no-padding
+    .row
+      .col-md-9.col-sm-8
+        .pad
+          // Map will be created here
+          #world-map-markers(style='height: 325px;')
+      // /.col
+      .col-md-3.col-sm-4
+        .pad.box-pane-right.bg-green(style='min-height: 280px')
+          .description-block.margin-bottom
+            .sparkbar.pad(data-color='#fff') 90,70,90,70,75,80,70
+            h5.description-header 8390
+            span.description-text Visits
+          // /.description-block
+          .description-block.margin-bottom
+            .sparkbar.pad(data-color='#fff') 90,50,90,70,61,83,63
+            h5.description-header 30%
+            span.description-text Referrals
+          // /.description-block
+          .description-block
+            .sparkbar.pad(data-color='#fff') 90,50,90,70,61,83,63
+            h5.description-header 70%
+            span.description-text Organic
+          // /.description-block
+      // /.col
+    // /.row
+  // /.box-body
+// /.box

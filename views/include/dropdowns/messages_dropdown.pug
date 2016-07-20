@@ -1,0 +1,64 @@
+// Messages: style can be found in dropdown.less
+li.dropdown.messages-menu
+  a.dropdown-toggle(href='#', data-toggle='dropdown')
+    i.fa.fa-envelope-o
+    span.label.label-success 4
+  ul.dropdown-menu
+    li.header You have 4 messages
+    li
+      // inner menu: contains the actual data
+      ul.menu
+        li
+          // start message
+          a(href='#')
+            .pull-left
+              img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+            h4
+              | Support Team
+              small
+                i.fa.fa-clock-o
+                |  5 mins
+            p Why not buy a new awesome theme?
+        // end message
+        li
+          a(href='#')
+            .pull-left
+              img.img-circle(src='dist/img/user3-128x128.jpg', alt='User Image')
+            h4
+              | AdminLTE Design Team
+              small
+                i.fa.fa-clock-o
+                |  2 hours
+            p Why not buy a new awesome theme?
+        li
+          a(href='#')
+            .pull-left
+              img.img-circle(src='dist/img/user4-128x128.jpg', alt='User Image')
+            h4
+              | Developers
+              small
+                i.fa.fa-clock-o
+                |  Today
+            p Why not buy a new awesome theme?
+        li
+          a(href='#')
+            .pull-left
+              img.img-circle(src='dist/img/user3-128x128.jpg', alt='User Image')
+            h4
+              | Sales Department
+              small
+                i.fa.fa-clock-o
+                |  Yesterday
+            p Why not buy a new awesome theme?
+        li
+          a(href='#')
+            .pull-left
+              img.img-circle(src='dist/img/user4-128x128.jpg', alt='User Image')
+            h4
+              | Reviewers
+              small
+                i.fa.fa-clock-o
+                |  2 days
+            p Why not buy a new awesome theme?
+    li.footer
+      a(href='#') See All Messages

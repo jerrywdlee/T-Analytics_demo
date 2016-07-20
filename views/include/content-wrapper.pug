@@ -1,0 +1,54 @@
+// Content Wrapper. Contains page content
+.content-wrapper
+  // Content Header (Page header)
+  section.content-header
+    h1
+      | Dashboard
+      small Version 2.0
+    ol.breadcrumb
+      li
+        a(href='#')
+          i.fa.fa-dashboard
+          |  Home
+      li.active Dashboard
+  // Main content
+  section.content
+    // info-box row
+    .row
+      //-.col-md-12
+      include ./contents/info-boxes.pug
+    // /.info-box row
+    .row
+      .col-md-12
+        include ./contents/box_md-12.pug
+      // /.col
+    // /.row
+    // Main row
+    .row
+      // Left col
+      .col-md-8
+        // MAP & BOX PANE
+        include ./contents/box-success_md-8.pug
+        .row
+          .col-md-6
+            // DIRECT CHAT
+            include ./contents/box-warning_md-6.pug
+          // /.col
+          .col-md-6
+            // USERS LIST
+            include ./contents/box-danger_md-6.pug
+          // /.col
+        // /.row
+        // TABLE: LATEST ORDERS
+        include ./contents/box-info_md-8.pug
+      // /.col
+      .col-md-4
+        include ./contents/info-boxes_2.pug
+        // Pie Chart
+        include ./contents/box_md-4.pug
+        // PRODUCT LIST
+        include ./contents/box-primary_md-4.pug
+      // /.col
+    // /.row
+  // /.content
+// /.content-wrapper

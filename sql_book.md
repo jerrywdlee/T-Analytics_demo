@@ -169,6 +169,22 @@ INSERT INTO age_groups (age_group,upper_to,lower_to) VALUES
 select * from age_groups where deleted <> true;
 ```
 
+## デバイス
+```sql
+INSERT INTO devices (uuid, individual_follow_up_trigger, individual_auto_order_trigger, ) VALUES ($1::text, $2::text, $3::text);
+```
+
+## ランク
+```sql
+INSERT INTO ranks (rank) VALUES ($1::text);
+```
+
+## 生データ
+```sql
+INSERT INTO raw_datas (uuid, device_id, remain_lvl, battery_lvl, opened) VALUES ($1, $2::int, $3::int, $4::int, $5::int);
+```
+
+
 # update系
 ```sql
 update age_groups set age_group = '50代以上', upper_to = DEFAULT , updated_at = now() where age_group = '50代';

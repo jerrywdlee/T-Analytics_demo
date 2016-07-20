@@ -35,7 +35,7 @@ pool.connect(function(err, client, done) {
     });
   };
 
-  var transaction = function (client, sql, params, call_back) {
+  var pg_transaction = function (client, sql, params, call_back) {
     client.query('BEGIN', function(err, result) {
       if(err) return rollback(client,err);
       client.query(sql, params, function(err, result) {
@@ -50,7 +50,7 @@ pool.connect(function(err, client, done) {
     });
   }
 
-  transaction(client,
+  pg_transaction(client,
               "INSERT INTO admin_users(email, name, password, auth_id) VALUES ($1::text, $2::text, $3::text, $4::int)",
               ["lee@temona.co.jp","TEMONA-Lee","123456","1"],
               function() {console.log("Transaction OK!!")});
