@@ -3,14 +3,14 @@
   // Content Header (Page header)
   section.content-header
     h1
-      | Dashboard
-      small Version 2.0
+      | ダッシュボード
+      //small Version 2.0
     ol.breadcrumb
       li
         a(href='#')
-          i.fa.fa-dashboard
-          |  Home
-      li.active Dashboard
+          i.fa.fa-laptop
+          |  ホーム
+      li.active ダッシュボード
   // Main content
   section.content
     // info-box row
@@ -23,6 +23,9 @@
         include ./contents/box_md-12.pug
       // /.col
     // /.row
+    .row
+      .col-md-8
+        include ./contents/pyramid-chart_md-8.pug
     // Main row
     .row
       // Left col

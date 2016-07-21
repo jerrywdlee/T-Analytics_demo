@@ -3,7 +3,8 @@ aside.main-sidebar
   // sidebar: style can be found in sidebar.less
   section.sidebar
     // Sidebar user panel
-    .user-panel
+    //.user-panel
+    //
       .pull-left.image
         img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
       .pull-left.info
@@ -14,21 +15,22 @@ aside.main-sidebar
     // search form
     form.sidebar-form(action='#', method='get')
       .input-group
-        input.form-control(type='text', name='q', placeholder='Search...')
+        input.form-control(type='text', name='q', placeholder=index_config.search_box_placeholder)
         span.input-group-btn
           button#search-btn.btn.btn-flat(type='submit', name='search')
             i.fa.fa-search
     // /.search form
     // sidebar menu: : style can be found in sidebar.less
     ul.sidebar-menu
-      li.header MAIN NAVIGATION
+      li.header 主要機能
       li.active.treeview
         a(href='#')
           i.fa.fa-dashboard
-          span Dashboard
+          span ダッシュボード
           span.pull-right-container
-            i.fa.fa-angle-left.pull-right
-        ul.treeview-menu
+            //i.fa.fa-angle-left.pull-right
+        //ul.treeview-menu
+        //
           li
             a(href='index.html')
               i.fa.fa-circle-o
@@ -39,10 +41,11 @@ aside.main-sidebar
               |  Dashboard v2
       li.treeview
         a(href='#')
-          i.fa.fa-files-o
-          span Layout Options
+          i.fa.fa-area-chart
+          span 商品分析
           span.pull-right-container
-            span.label.label-primary.pull-right 4
+            //span.label.label-primary.pull-right 4
+            i.fa.fa-angle-left.pull-right
         ul.treeview-menu
           li
             a(href='pages/layout/top-nav.html')
@@ -62,11 +65,12 @@ aside.main-sidebar
               |  Collapsed Sidebar
       li
         a(href='pages/widgets.html')
-          i.fa.fa-th
-          span Widgets
+          i.fa.fa-users
+          span 顧客分析
           span.pull-right-container
             small.label.pull-right.bg-green new
-      li.treeview
+      //li.treeview
+      //
         a(href='#')
           i.fa.fa-pie-chart
           span Charts
@@ -91,8 +95,8 @@ aside.main-sidebar
               |  Inline charts
       li.treeview
         a(href='#')
-          i.fa.fa-laptop
-          span UI Elements
+          i.fa.fa-database
+          span 端末一覧
           span.pull-right-container
             i.fa.fa-angle-left.pull-right
         ul.treeview-menu
@@ -122,8 +126,8 @@ aside.main-sidebar
               |  Modals
       li.treeview
         a(href='#')
-          i.fa.fa-edit
-          span Forms
+          i.fa.fa-wrench
+          span 各種設定
           span.pull-right-container
             i.fa.fa-angle-left.pull-right
         ul.treeview-menu
@@ -140,6 +144,7 @@ aside.main-sidebar
               i.fa.fa-circle-o
               |  Editors
       li.treeview
+      //
         a(href='#')
           i.fa.fa-table
           span Tables
@@ -155,6 +160,7 @@ aside.main-sidebar
               i.fa.fa-circle-o
               |  Data tables
       li
+      //
         a(href='pages/calendar.html')
           i.fa.fa-calendar
           span Calendar
@@ -162,6 +168,7 @@ aside.main-sidebar
             small.label.pull-right.bg-red 3
             small.label.pull-right.bg-blue 17
       li
+      //
         a(href='pages/mailbox/mailbox.html')
           i.fa.fa-envelope
           span Mailbox
@@ -170,6 +177,7 @@ aside.main-sidebar
             small.label.pull-right.bg-green 16
             small.label.pull-right.bg-red 5
       li.treeview
+      //
         a(href='#')
           i.fa.fa-folder
           span Examples
@@ -213,6 +221,7 @@ aside.main-sidebar
               i.fa.fa-circle-o
               |  Pace Page
       li.treeview
+      //
         a(href='#')
           i.fa.fa-share
           span Multilevel
@@ -254,20 +263,21 @@ aside.main-sidebar
               i.fa.fa-circle-o
               |  Level One
       li
+      //
         a(href='documentation/index.html')
           i.fa.fa-book
           span Documentation
-      li.header LABELS
+      li.header お問い合わせ
       li
         a(href='#')
           i.fa.fa-circle-o.text-red
-          span Important
+          span 利用規約
       li
         a(href='#')
           i.fa.fa-circle-o.text-yellow
-          span Warning
+          span プライバシーポリシー
       li
         a(href='#')
           i.fa.fa-circle-o.text-aqua
-          span Information
+          span お問い合わせ
   // /.sidebar

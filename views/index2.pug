@@ -10,10 +10,10 @@ html
       footer.main-footer
         .pull-right.hidden-xs
           b Version
-          |  #{system_version}
+          |  #{index_config.system_version}
         strong
-          | Copyright © 1970-2016
-          a(href='https://www.facebook.com/jerrywdlee')  Jerry Lee
+          | Copyright © #{index_config.issuance_date}
+          a(href=index_config.right_holder_url)  #{index_config.right_holder}
           | .
         |  All rights
         |     reserved.
