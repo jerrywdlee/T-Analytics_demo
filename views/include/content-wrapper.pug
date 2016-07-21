@@ -3,9 +3,20 @@
   // Content Header (Page header)
   section.content-header
     h1
-      | ダッシュボード
+      | #{page_title}
       //small Version 2.0
     ol.breadcrumb
+      each breadcrumb in breadcrumbs
+        if breadcrumb.name == index_config.homepage_name
+          li
+            a(href=breadcrumb.url)
+              i.fa.fa-laptop
+              |  #{breadcrumb.name}
+        else if breadcrumb.name != page_title
+          li: a(href=breadcrumb.url) #{breadcrumb.name}
+        else
+          li.active #{breadcrumb.name}
+    //
       li
         a(href='#')
           i.fa.fa-laptop
@@ -25,6 +36,7 @@
     // /.row
     .row
       .col-md-8
+        // Pyramid CHAT
         include ./contents/pyramid-chart_md-8.pug
     // Main row
     .row

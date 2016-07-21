@@ -1,18 +1,18 @@
 // User Account: style can be found in dropdown.less
 li.dropdown.user.user-menu
   a.dropdown-toggle(href='#', data-toggle='dropdown')
-    img.user-image(src='dist/img/user2-160x160.jpg', alt='User Image')
-    span.hidden-xs Alexander Pierce
+    img.user-image(src='t_analytics/images/ware_chu.png', alt='User Image')
+    span.hidden-xs #{index_config.user_name}
   ul.dropdown-menu
     // User image
     li.user-header
-      img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+      img.img-circle(src='t_analytics/images/ware_chu.png', alt='User Image')
       p
-        | Alexander Pierce - Web Developer
-        small Member since Nov. 2012
+        | #{index_config.user_name} - #{index_config.user_auth}
+        small #{index_config.user_company}
     // Menu Body
     li.user-body
-      .row
+      //.row
         .col-xs-4.text-center
           a(href='#') Followers
         .col-xs-4.text-center

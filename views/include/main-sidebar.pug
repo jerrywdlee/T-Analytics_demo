@@ -4,9 +4,8 @@ aside.main-sidebar
   section.sidebar
     // Sidebar user panel
     //.user-panel
-    //
       .pull-left.image
-        img.img-circle(src='dist/img/user2-160x160.jpg', alt='User Image')
+        img.img-circle(src='t_analytics/images/break_the_egg_256px.png', alt='User Image')
       .pull-left.info
         p Alexander Pierce
         a(href='#')
@@ -24,13 +23,12 @@ aside.main-sidebar
     ul.sidebar-menu
       li.header 主要機能
       li.active.treeview
-        a(href='#')
+        a(href='/dashboard')
           i.fa.fa-dashboard
           span ダッシュボード
           span.pull-right-container
             //i.fa.fa-angle-left.pull-right
         //ul.treeview-menu
-        //
           li
             a(href='index.html')
               i.fa.fa-circle-o
@@ -42,85 +40,95 @@ aside.main-sidebar
       li.treeview
         a(href='#')
           i.fa.fa-area-chart
-          span 商品分析
+          span 商品管理
           span.pull-right-container
             //span.label.label-primary.pull-right 4
             i.fa.fa-angle-left.pull-right
         ul.treeview-menu
           li
             a(href='pages/layout/top-nav.html')
-              i.fa.fa-circle-o
-              |  Top Navigation
+              //i.fa.fa-circle-o
+              i.ion.ion-ios-list-outline
+              |  商品一覧
           li
             a(href='pages/layout/boxed.html')
-              i.fa.fa-circle-o
-              |  Boxed
-          li
+              i.ion.ion-plus-round
+              |  新規登録
+          //li
             a(href='pages/layout/fixed.html')
               i.fa.fa-circle-o
               |  Fixed
-          li
+          //li
             a(href='pages/layout/collapsed-sidebar.html')
               i.fa.fa-circle-o
               |  Collapsed Sidebar
-      li
-        a(href='pages/widgets.html')
-          i.fa.fa-users
-          span 顧客分析
-          span.pull-right-container
-            small.label.pull-right.bg-green new
-      //li.treeview
-      //
+      li.treeview
         a(href='#')
-          i.fa.fa-pie-chart
-          span Charts
+          i.fa.fa-users
+          span 顧客管理
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+            //small.label.pull-right.bg-green new
+            ul.treeview-menu
+              li
+                a(href='pages/charts/chartjs.html')
+                  i.ion.ion-person-stalker
+                  |  顧客一覧
+              li
+                a(href='pages/charts/morris.html')
+                  i.ion.ion-person-add
+                  |  新規登録
+      li.treeview
+        a(href='#')
+          i.fa.fa-shopping-cart
+          span 注文管理
           span.pull-right-container
             i.fa.fa-angle-left.pull-right
         ul.treeview-menu
           li
             a(href='pages/charts/chartjs.html')
               i.fa.fa-circle-o
-              |  ChartJS
+              |  注文一覧
           li
             a(href='pages/charts/morris.html')
               i.fa.fa-circle-o
-              |  Morris
+              |  注文作成
           li
             a(href='pages/charts/flot.html')
               i.fa.fa-circle-o
-              |  Flot
+              |  出荷管理
           li
             a(href='pages/charts/inline.html')
               i.fa.fa-circle-o
-              |  Inline charts
+              |  売上管理
       li.treeview
         a(href='#')
-          i.fa.fa-database
-          span 端末一覧
+          i.fa.fa-cubes
+          span 端末管理
           span.pull-right-container
             i.fa.fa-angle-left.pull-right
         ul.treeview-menu
           li
             a(href='pages/UI/general.html')
               i.fa.fa-circle-o
-              |  General
+              |  端末一覧
           li
             a(href='pages/UI/icons.html')
               i.fa.fa-circle-o
-              |  Icons
-          li
+              |  新規登録
+          //li
             a(href='pages/UI/buttons.html')
               i.fa.fa-circle-o
               |  Buttons
-          li
+          //li
             a(href='pages/UI/sliders.html')
               i.fa.fa-circle-o
               |  Sliders
-          li
+          //li
             a(href='pages/UI/timeline.html')
               i.fa.fa-circle-o
               |  Timeline
-          li
+          //li
             a(href='pages/UI/modals.html')
               i.fa.fa-circle-o
               |  Modals
@@ -134,17 +142,16 @@ aside.main-sidebar
           li
             a(href='pages/forms/general.html')
               i.fa.fa-circle-o
-              |  General Elements
+              |  重要項目設定
           li
             a(href='pages/forms/advanced.html')
               i.fa.fa-circle-o
-              |  Advanced Elements
+              |  アカウント設定
           li
             a(href='pages/forms/editors.html')
               i.fa.fa-circle-o
-              |  Editors
-      li.treeview
-      //
+              |  アカウント追加
+      //li.treeview
         a(href='#')
           i.fa.fa-table
           span Tables
@@ -159,16 +166,14 @@ aside.main-sidebar
             a(href='pages/tables/data.html')
               i.fa.fa-circle-o
               |  Data tables
-      li
-      //
+      //li
         a(href='pages/calendar.html')
           i.fa.fa-calendar
           span Calendar
           span.pull-right-container
             small.label.pull-right.bg-red 3
             small.label.pull-right.bg-blue 17
-      li
-      //
+      //li
         a(href='pages/mailbox/mailbox.html')
           i.fa.fa-envelope
           span Mailbox
@@ -176,8 +181,7 @@ aside.main-sidebar
             small.label.pull-right.bg-yellow 12
             small.label.pull-right.bg-green 16
             small.label.pull-right.bg-red 5
-      li.treeview
-      //
+      //li.treeview
         a(href='#')
           i.fa.fa-folder
           span Examples
@@ -220,8 +224,7 @@ aside.main-sidebar
             a(href='pages/examples/pace.html')
               i.fa.fa-circle-o
               |  Pace Page
-      li.treeview
-      //
+      //li.treeview
         a(href='#')
           i.fa.fa-share
           span Multilevel
@@ -262,8 +265,7 @@ aside.main-sidebar
             a(href='#')
               i.fa.fa-circle-o
               |  Level One
-      li
-      //
+      //li
         a(href='documentation/index.html')
           i.fa.fa-book
           span Documentation
