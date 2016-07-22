@@ -17,10 +17,12 @@ $(document).ready(function () {
       var series_name = data_arrays[seriesIndex].label;
       var ticks_name = ticks_obj.data[pointIndex];
       var series_value = data_arrays[seriesIndex].data[pointIndex];
+      return series_name+','+ticks_name+' : '+series_value + '人'
       //$("#tooltipMale").stop(true, true).fadeIn(250).html(malePopulation.toPrecision(4));
-      console.log(series_name);
-      console.log(ticks_name);
-      console.log(series_value);
+      //console.log(series_name);
+      //console.log(ticks_name);
+      //console.log(series_value);
+      //tooltipContentEditor(series_name+','+ticks_name+':'+series_value)
     },
     function () {
       // dismiss tooltips
@@ -48,8 +50,24 @@ var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_h
                 shadow: false
             },
             highlighter: {
-              show: true,
-              sizeAdjust: 7.5
+              show : true,
+              showMarker : false,
+              useAxesFormatters : true,
+              //tooltipFadeSpeed : "def",
+              tooltipContentEditor : function(str, seriesIndex, pointIndex){
+                        //var splitted = plot._plotData[1][index];
+                        //var x = splitted[0];
+                        //var y = splitted[1];
+                        //return x + ", " + y;
+                        //var series_name = data_arrays[seriesIndex].label;
+                        //var ticks_name = ticks_obj.data[pointIndex];
+                        //var series_value = data_arrays[seriesIndex].data[pointIndex];
+                        //return seriesIndex + ":" + pointIndex
+                        //return series_name+','+ticks_name+' : '+series_value
+                        return callback_highlight(data_arrays,ticks_obj,seriesIndex, pointIndex)
+                    }
+              //tooltipFormatString: '%d'
+              //sizeAdjust: 0.01
             },
             series: [
                 {
@@ -101,7 +119,17 @@ var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_h
     // for tips
     $("#jqPlot-sample").bind("jqplotDataHighlight", function(evt, seriesIndex, pointIndex, data){
       //console.log(evt);
+      var series_name = data_arrays[seriesIndex].label;
+      var ticks_name = ticks_obj.data[pointIndex];
+      var series_value = data_arrays[seriesIndex].data[pointIndex];
+      console.log(series_name);
+      console.log(ticks_name);
+      console.log(series_value);
+      //setInterval(function () {
+        //$("#jqPlot-sample .jqplot-highlighter-tooltip").html(series_name+','+ticks_name+':'+series_value)
+      //}, 10);
       if (callback_highlight) callback_highlight(data_arrays,ticks_obj,seriesIndex, pointIndex);
+      //tooltipContentEditor(ticks_obj.data[pointIndex] + ':' + data_arrays[seriesIndex][pointIndex])
       //console.log(ticks_obj.data[pointIndex]);
       //console.log(data_arrays[seriesIndex][pointIndex]);
       //console.log(data);

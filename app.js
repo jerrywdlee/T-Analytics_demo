@@ -14,7 +14,7 @@ var index_config = {
   issuance_date : '1970-2016',
   right_holder : 'Jerry Lee',
   right_holder_url : 'https://www.facebook.com/jerrywdlee',
-  system_version : '0.1.6'
+  system_version : '0.1.8'
 }
 
 //app.set('view engine', 'ejs');

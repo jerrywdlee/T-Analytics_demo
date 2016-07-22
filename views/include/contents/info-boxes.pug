@@ -1,23 +1,33 @@
 // Info boxes
+style.
+  .info-box .info-box-content>span.info-box-text.my_label
+    {font-size:1.2em;margin-top:10px;margin-left:5px;}
+  .info-box .info-box-content>span.info-box-number.my_label
+    {font-size:1.2em;margin-left:5px}
+  .info-box>a
+    {color: #333;}
+
 .col-md-3.col-sm-6.col-xs-12
   .info-box
-    span.info-box-icon.bg-aqua
-      i.ion.ion-ios-gear-outline
-    .info-box-content
-      span.info-box-text(style='font-size:1.2em;margin-top:10px;margin-left:5px') 本日利用回数
-      span.info-box-number(style='font-size:1.2em;margin-left:5px')
-        | 90
-        small %
+    a(href="#")
+      span.info-box-icon.bg-aqua
+        i.ion.ion-cube
+      .info-box-content
+        span.info-box-text.my_label 本日利用回数
+        span.info-box-number.my_label
+          | 90
+          small %
     // /.info-box-content
   // /.info-box
 // /.col
 .col-md-3.col-sm-6.col-xs-12
   .info-box
-    span.info-box-icon.bg-red
-      i.fa.fa-google-plus
-    .info-box-content
-      span.info-box-text 発送待ち
-      span.info-box-number 41,410
+    a(href="#")
+      span.info-box-icon.bg-red
+        i.ion.ion-coffee
+      .info-box-content
+        span.info-box-text.my_label 発送待ち
+        span.info-box-number.my_label 41,410
     // /.info-box-content
   // /.info-box
 // /.col
@@ -25,21 +35,23 @@
 .clearfix.visible-sm-block
 .col-md-3.col-sm-6.col-xs-12
   .info-box
-    span.info-box-icon.bg-green
-      i.ion.ion-ios-cart-outline
-    .info-box-content
-      span.info-box-text 発送済み
-      span.info-box-number 760
+    a(href="#")
+      span.info-box-icon.bg-green
+        i.ion.ion-android-boat
+      .info-box-content
+        span.info-box-text.my_label 発送済み
+        span.info-box-number.my_label 760
     // /.info-box-content
   // /.info-box
 // /.col
 .col-md-3.col-sm-6.col-xs-12
   .info-box
-    span.info-box-icon.bg-yellow
-      i.ion.ion-ios-people-outline
-    .info-box-content
-      span.info-box-text 利用者数
-      span.info-box-number 2,000
+    a(href="#")
+      span.info-box-icon.bg-yellow
+        i.ion.ion-android-contacts
+      .info-box-content
+        span.info-box-text.my_label 利用者数
+        span.info-box-number.my_label 2,000
     // /.info-box-content
   // /.info-box
 // /.col
