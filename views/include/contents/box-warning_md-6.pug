@@ -1,0 +1,140 @@
+// recommended in ".col-md-6" (<div class='.col-md-6'></div>)
+// DIRECT CHAT
+.box.box-warning.direct-chat.direct-chat-warning
+  .box-header.with-border
+    h3.box-title Direct Chat
+    .box-tools.pull-right
+      span.badge.bg-yellow(data-toggle='tooltip', title='3 New Messages') 3
+      button.btn.btn-box-tool(type='button', data-widget='collapse')
+        i.fa.fa-minus
+      button.btn.btn-box-tool(type='button', data-toggle='tooltip', title='Contacts', data-widget='chat-pane-toggle')
+        i.fa.fa-comments
+      button.btn.btn-box-tool(type='button', data-widget='remove')
+        i.fa.fa-times
+  // /.box-header
+  .box-body
+    // Conversations are loaded here
+    .direct-chat-messages
+      // Message. Default to the left
+      .direct-chat-msg
+        .direct-chat-info.clearfix
+          span.direct-chat-name.pull-left Alexander Pierce
+          span.direct-chat-timestamp.pull-right 23 Jan 2:00 pm
+        // /.direct-chat-info
+        img.direct-chat-img(src='dist/img/user1-128x128.jpg', alt='message user image')
+        // /.direct-chat-img
+        .direct-chat-text
+          | Is this template really for free? That's unbelievable!
+        // /.direct-chat-text
+      // /.direct-chat-msg
+      // Message to the right
+      .direct-chat-msg.right
+        .direct-chat-info.clearfix
+          span.direct-chat-name.pull-right Sarah Bullock
+          span.direct-chat-timestamp.pull-left 23 Jan 2:05 pm
+        // /.direct-chat-info
+        img.direct-chat-img(src='dist/img/user3-128x128.jpg', alt='message user image')
+        // /.direct-chat-img
+        .direct-chat-text
+          | You better believe it!
+        // /.direct-chat-text
+      // /.direct-chat-msg
+      // Message. Default to the left
+      .direct-chat-msg
+        .direct-chat-info.clearfix
+          span.direct-chat-name.pull-left Alexander Pierce
+          span.direct-chat-timestamp.pull-right 23 Jan 5:37 pm
+        // /.direct-chat-info
+        img.direct-chat-img(src='dist/img/user1-128x128.jpg', alt='message user image')
+        // /.direct-chat-img
+        .direct-chat-text
+          | Working with AdminLTE on a great new app! Wanna join?
+        // /.direct-chat-text
+      // /.direct-chat-msg
+      // Message to the right
+      .direct-chat-msg.right
+        .direct-chat-info.clearfix
+          span.direct-chat-name.pull-right Sarah Bullock
+          span.direct-chat-timestamp.pull-left 23 Jan 6:10 pm
+        // /.direct-chat-info
+        img.direct-chat-img(src='dist/img/user3-128x128.jpg', alt='message user image')
+        // /.direct-chat-img
+        .direct-chat-text
+          | I would love to.
+        // /.direct-chat-text
+      // /.direct-chat-msg
+    // /.direct-chat-messages
+    // Contacts are loaded here
+    .direct-chat-contacts
+      ul.contacts-list
+        li
+          a(href='#')
+            img.contacts-list-img(src='dist/img/user1-128x128.jpg', alt='User Image')
+            .contacts-list-info
+              span.contacts-list-name
+                | Count Dracula
+                small.contacts-list-date.pull-right 2/28/2015
+              span.contacts-list-msg How have you been? I was...
+            // /.contacts-list-info
+        // End Contact Item
+        li
+          a(href='#')
+            img.contacts-list-img(src='dist/img/user7-128x128.jpg', alt='User Image')
+            .contacts-list-info
+              span.contacts-list-name
+                | Sarah Doe
+                small.contacts-list-date.pull-right 2/23/2015
+              span.contacts-list-msg I will be waiting for...
+            // /.contacts-list-info
+        // End Contact Item
+        li
+          a(href='#')
+            img.contacts-list-img(src='dist/img/user3-128x128.jpg', alt='User Image')
+            .contacts-list-info
+              span.contacts-list-name
+                | Nadia Jolie
+                small.contacts-list-date.pull-right 2/20/2015
+              span.contacts-list-msg I'll call you back at...
+            // /.contacts-list-info
+        // End Contact Item
+        li
+          a(href='#')
+            img.contacts-list-img(src='dist/img/user5-128x128.jpg', alt='User Image')
+            .contacts-list-info
+              span.contacts-list-name
+                | Nora S. Vans
+                small.contacts-list-date.pull-right 2/10/2015
+              span.contacts-list-msg Where is your new...
+            // /.contacts-list-info
+        // End Contact Item
+        li
+          a(href='#')
+            img.contacts-list-img(src='dist/img/user6-128x128.jpg', alt='User Image')
+            .contacts-list-info
+              span.contacts-list-name
+                | John K.
+                small.contacts-list-date.pull-right 1/27/2015
+              span.contacts-list-msg Can I take a look at...
+            // /.contacts-list-info
+        // End Contact Item
+        li
+          a(href='#')
+            img.contacts-list-img(src='dist/img/user8-128x128.jpg', alt='User Image')
+            .contacts-list-info
+              span.contacts-list-name
+                | Kenneth M.
+                small.contacts-list-date.pull-right 1/4/2015
+              span.contacts-list-msg Never mind I found...
+            // /.contacts-list-info
+        // End Contact Item
+      // /.contatcts-list
+    // /.direct-chat-pane
+  // /.box-body
+  .box-footer
+    form(action='#', method='post')
+      .input-group
+        input.form-control(type='text', name='message', placeholder='Type Message ...')
+        span.input-group-btn
+          button.btn.btn-warning.btn-flat(type='button') Send
+  // /.box-footer
+// /.direct-chat

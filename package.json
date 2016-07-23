@@ -1,0 +1,30 @@
+{
+  "name": "t_analytics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerrywdlee-temona/T-Analytics_demo.git"
+  },
+  "author": "Jerry Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jerrywdlee-temona/T-Analytics_demo/issues"
+  },
+  "homepage": "https://github.com/jerrywdlee-temona/T-Analytics_demo#readme",
+  "dependencies": {
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "express-breadcrumbs": "0.0.2",
+    "jade": "^1.11.0",
+    "pg": "^6.0.2",
+    "pug": "^2.0.0-alpha6"
+  },
+  "devDependencies": {
+    "admin-lte": "^2.3.5"
+  }
+}

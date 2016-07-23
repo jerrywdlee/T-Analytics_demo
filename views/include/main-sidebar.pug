@@ -1,0 +1,285 @@
+// Left side column. contains the logo and sidebar
+aside.main-sidebar
+  // sidebar: style can be found in sidebar.less
+  section.sidebar
+    // Sidebar user panel
+    //.user-panel
+      .pull-left.image
+        img.img-circle(src='t_analytics/images/break_the_egg_256px.png', alt='User Image')
+      .pull-left.info
+        p Alexander Pierce
+        a(href='#')
+          i.fa.fa-circle.text-success
+          |  Online
+    // search form
+    form.sidebar-form(action='#', method='get')
+      .input-group
+        input.form-control(type='text', name='q', placeholder=index_config.search_box_placeholder)
+        span.input-group-btn
+          button#search-btn.btn.btn-flat(type='submit', name='search')
+            i.fa.fa-search
+    // /.search form
+    // sidebar menu: : style can be found in sidebar.less
+    ul.sidebar-menu
+      li.header 主要機能
+      li.active.treeview
+        a(href='/dashboard')
+          i.fa.fa-dashboard
+          span ダッシュボード
+          span.pull-right-container
+            //i.fa.fa-angle-left.pull-right
+        //ul.treeview-menu
+          li
+            a(href='index.html')
+              i.fa.fa-circle-o
+              |  Dashboard v1
+          li.active
+            a(href='index2.html')
+              i.fa.fa-circle-o
+              |  Dashboard v2
+      li.treeview
+        a(href='#')
+          i.fa.fa-area-chart
+          span 商品管理
+          span.pull-right-container
+            //span.label.label-primary.pull-right 4
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/layout/top-nav.html')
+              //i.fa.fa-circle-o
+              i.ion.ion-ios-list-outline
+              |  商品一覧
+          li
+            a(href='pages/layout/boxed.html')
+              i.ion.ion-plus-round
+              |  新規登録
+          //li
+            a(href='pages/layout/fixed.html')
+              i.fa.fa-circle-o
+              |  Fixed
+          //li
+            a(href='pages/layout/collapsed-sidebar.html')
+              i.fa.fa-circle-o
+              |  Collapsed Sidebar
+      li.treeview
+        a(href='#')
+          i.fa.fa-users
+          span 顧客管理
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+            //small.label.pull-right.bg-green new
+            ul.treeview-menu
+              li
+                a(href='pages/charts/chartjs.html')
+                  i.ion.ion-person-stalker
+                  |  顧客一覧
+              li
+                a(href='pages/charts/morris.html')
+                  i.ion.ion-person-add
+                  |  新規登録
+      li.treeview
+        a(href='#')
+          i.fa.fa-shopping-cart
+          span 注文管理
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/charts/chartjs.html')
+              i.fa.fa-circle-o
+              |  注文一覧
+          li
+            a(href='pages/charts/morris.html')
+              i.fa.fa-circle-o
+              |  注文作成
+          li
+            a(href='pages/charts/flot.html')
+              i.fa.fa-circle-o
+              |  出荷管理
+          li
+            a(href='pages/charts/inline.html')
+              i.fa.fa-circle-o
+              |  売上管理
+      li.treeview
+        a(href='#')
+          i.fa.fa-cubes
+          span 端末管理
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/UI/general.html')
+              i.fa.fa-circle-o
+              |  端末一覧
+          li
+            a(href='pages/UI/icons.html')
+              i.fa.fa-circle-o
+              |  新規登録
+          //li
+            a(href='pages/UI/buttons.html')
+              i.fa.fa-circle-o
+              |  Buttons
+          //li
+            a(href='pages/UI/sliders.html')
+              i.fa.fa-circle-o
+              |  Sliders
+          //li
+            a(href='pages/UI/timeline.html')
+              i.fa.fa-circle-o
+              |  Timeline
+          //li
+            a(href='pages/UI/modals.html')
+              i.fa.fa-circle-o
+              |  Modals
+      li.treeview
+        a(href='#')
+          i.fa.fa-wrench
+          span 各種設定
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/forms/general.html')
+              i.fa.fa-circle-o
+              |  重要項目設定
+          li
+            a(href='pages/forms/advanced.html')
+              i.fa.fa-circle-o
+              |  アカウント設定
+          li
+            a(href='pages/forms/editors.html')
+              i.fa.fa-circle-o
+              |  アカウント追加
+      //li.treeview
+        a(href='#')
+          i.fa.fa-table
+          span Tables
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/tables/simple.html')
+              i.fa.fa-circle-o
+              |  Simple tables
+          li
+            a(href='pages/tables/data.html')
+              i.fa.fa-circle-o
+              |  Data tables
+      //li
+        a(href='pages/calendar.html')
+          i.fa.fa-calendar
+          span Calendar
+          span.pull-right-container
+            small.label.pull-right.bg-red 3
+            small.label.pull-right.bg-blue 17
+      //li
+        a(href='pages/mailbox/mailbox.html')
+          i.fa.fa-envelope
+          span Mailbox
+          span.pull-right-container
+            small.label.pull-right.bg-yellow 12
+            small.label.pull-right.bg-green 16
+            small.label.pull-right.bg-red 5
+      //li.treeview
+        a(href='#')
+          i.fa.fa-folder
+          span Examples
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='pages/examples/invoice.html')
+              i.fa.fa-circle-o
+              |  Invoice
+          li
+            a(href='pages/examples/profile.html')
+              i.fa.fa-circle-o
+              |  Profile
+          li
+            a(href='pages/examples/login.html')
+              i.fa.fa-circle-o
+              |  Login
+          li
+            a(href='pages/examples/register.html')
+              i.fa.fa-circle-o
+              |  Register
+          li
+            a(href='pages/examples/lockscreen.html')
+              i.fa.fa-circle-o
+              |  Lockscreen
+          li
+            a(href='pages/examples/404.html')
+              i.fa.fa-circle-o
+              |  404 Error
+          li
+            a(href='pages/examples/500.html')
+              i.fa.fa-circle-o
+              |  500 Error
+          li
+            a(href='pages/examples/blank.html')
+              i.fa.fa-circle-o
+              |  Blank Page
+          li
+            a(href='pages/examples/pace.html')
+              i.fa.fa-circle-o
+              |  Pace Page
+      //li.treeview
+        a(href='#')
+          i.fa.fa-share
+          span Multilevel
+          span.pull-right-container
+            i.fa.fa-angle-left.pull-right
+        ul.treeview-menu
+          li
+            a(href='#')
+              i.fa.fa-circle-o
+              |  Level One
+          li
+            a(href='#')
+              i.fa.fa-circle-o
+              |  Level One
+              span.pull-right-container
+                i.fa.fa-angle-left.pull-right
+            ul.treeview-menu
+              li
+                a(href='#')
+                  i.fa.fa-circle-o
+                  |  Level Two
+              li
+                a(href='#')
+                  i.fa.fa-circle-o
+                  |  Level Two
+                  span.pull-right-container
+                    i.fa.fa-angle-left.pull-right
+                ul.treeview-menu
+                  li
+                    a(href='#')
+                      i.fa.fa-circle-o
+                      |  Level Three
+                  li
+                    a(href='#')
+                      i.fa.fa-circle-o
+                      |  Level Three
+          li
+            a(href='#')
+              i.fa.fa-circle-o
+              |  Level One
+      //li
+        a(href='documentation/index.html')
+          i.fa.fa-book
+          span Documentation
+      li.header お問い合わせ
+      li
+        a(href='#')
+          i.fa.fa-circle-o.text-red
+          span 利用規約
+      li
+        a(href='#')
+          i.fa.fa-circle-o.text-yellow
+          span プライバシーポリシー
+      li
+        a(href='#')
+          i.fa.fa-circle-o.text-aqua
+          span お問い合わせ
+  // /.sidebar

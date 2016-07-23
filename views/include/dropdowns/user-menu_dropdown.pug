@@ -1,0 +1,32 @@
+// User Account: style can be found in dropdown.less
+li.dropdown.user.user-menu
+  a.dropdown-toggle(href='#', data-toggle='dropdown')
+    img.user-image(src='t_analytics/images/ware_chu.png', alt='User Image')
+    span.hidden-xs #{index_config.user_name}
+  ul.dropdown-menu
+    // User image
+    li.user-header
+      img.img-circle(src='t_analytics/images/ware_chu.png', alt='User Image')
+      p
+        | #{index_config.user_name} - #{index_config.user_auth}
+        small #{index_config.user_company}
+    // Menu Body
+    li.user-body
+      //.row
+        .col-xs-4.text-center
+          a(href='#') Followers
+        .col-xs-4.text-center
+          a(href='#') Sales
+        .col-xs-4.text-center
+          a(href='#') Friends
+      // /.row
+    // Menu Footer
+    li.user-footer
+      .pull-left
+        a.btn.btn-default.btn-flat(href='#') Profile
+      .pull-right
+        a.btn.btn-default.btn-flat(href='#') Sign out
+// Control Sidebar Toggle Button
+li
+  a(href='#', data-toggle='control-sidebar')
+    i.fa.fa-gears

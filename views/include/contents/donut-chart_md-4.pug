@@ -1,0 +1,66 @@
+// recommended in ".col-md-4" (<div class='.col-md-4'></div>)
+.box.box-default
+  script(src="t_analytics/scripts/donut_chart.js")
+  .box-header.with-border
+    h3.box-title
+      i.fa.fa-pie-chart
+        |  &nbsp;継続利用期間
+    .box-tools.pull-right
+      button.btn.btn-box-tool(type='button', data-widget='collapse')
+        i.fa.fa-minus
+      button.btn.btn-box-tool(type='button', data-widget='remove')
+        i.fa.fa-times
+  // /.box-header
+  .box-body
+    .row
+      .col-md-9
+        .chart-responsive
+          canvas#donut_chart(height='200')
+        // ./chart-responsive
+      // /.col
+      .col-md-3
+        ul#donut_chart_legend.chart-legend.clearfix
+        //
+          li
+            i.fa.fa-circle-o.text-red
+            |  Chrome
+          li
+            i.fa.fa-circle-o.text-green
+            |  IE
+          li
+            i.fa.fa-circle-o.text-yellow
+            |  FireFox
+          li
+            i.fa.fa-circle-o.text-aqua
+            |  Safari
+          li
+            i.fa.fa-circle-o.text-light-blue
+            |  Opera
+          li
+            i.fa.fa-circle-o.text-gray
+            |  Navigator
+      // /.col
+    // /.row
+  // /.box-body
+  //.box-footer.no-padding
+    ul.nav.nav-pills.nav-stacked
+      li
+        a(href='#')
+          | United States of America
+          span.pull-right.text-red
+            i.fa.fa-angle-down
+            |  12%
+      li
+        a(href='#')
+          | India
+          span.pull-right.text-green
+            i.fa.fa-angle-up
+            |  4%
+      li
+        a(href='#')
+          | China
+          span.pull-right.text-yellow
+            i.fa.fa-angle-left
+            |  0%
+  // /.footer
+// /.box
