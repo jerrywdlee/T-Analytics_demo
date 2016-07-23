@@ -2,7 +2,9 @@
 .box
   script(src="t_analytics/scripts/plot_chart.js")
   .box-header.with-border
-    h3.box-title Monthly Recap Report
+    h3.box-title
+      i.fa.fa-line-chart
+        |  &nbsp;使用率の推移
     .box-tools.pull-right
       button.btn.btn-box-tool(type='button', data-widget='collapse')
         i.fa.fa-minus
@@ -26,14 +28,14 @@
     .row
       .col-md-12
         p.text-center
-          strong Sales: 1 Jan, 2014 - 30 Jul, 2014
+          strong 2016-01 ~ 2016-07
         .chart
           // Sales Chart Canvas
           //canvas#salesChart(style='height: 180px;')
           canvas#cos_sin(style='height: 180px;')
         // /.chart-responsive
       // /.col
-      //.col-md-4
+      //.col-md-2
         p.text-center
           strong Goal Completion
         .progress-group
@@ -71,7 +73,7 @@
       // /.col
     // /.row
   // ./box-body
-  .box-footer
+  //.box-footer
     .row
       .col-sm-3.col-xs-6
         .description-block.border-right
