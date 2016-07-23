@@ -12,9 +12,9 @@ $(function () {
   //-----------------------
 
   // Get context with jQuery - using jQuery's .get() method.
-  var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
+  //var salesChartCanvas = $("#salesChart").get(0).getContext("2d");
   // This will get the first returned node in the jQuery collection.
-  var salesChart = new Chart(salesChartCanvas);
+  //var salesChart = new Chart(salesChartCanvas);
 
   var salesChartData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -60,7 +60,7 @@ $(function () {
     //Number - Tension of the bezier curve between points
     bezierCurveTension: 0.3,
     //Boolean - Whether to show a dot for each point
-    pointDot: false,
+    pointDot: true,
     //Number - Radius of each point dot in pixels
     pointDotRadius: 4,
     //Number - Pixel width of point dot stroke
@@ -72,7 +72,7 @@ $(function () {
     //Number - Pixel width of dataset stroke
     datasetStrokeWidth: 2,
     //Boolean - Whether to fill the dataset with a color
-    datasetFill: true,
+    datasetFill: false,
     //String - A legend template
     legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%=datasets[i].label%></li><%}%></ul>",
     //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
@@ -82,7 +82,7 @@ $(function () {
   };
 
   //Create the line chart
-  salesChart.Line(salesChartData, salesChartOptions);
+  //salesChart.Line(salesChartData, salesChartOptions);
 
   //---------------------------
   //- END MONTHLY SALES CHART -

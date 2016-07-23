@@ -1,0 +1,113 @@
+// better in ".col-md-12" (<div class='.col-md-12'></div>)
+.box
+  script(src="t_analytics/scripts/plot_chart.js")
+  .box-header.with-border
+    h3.box-title Monthly Recap Report
+    .box-tools.pull-right
+      button.btn.btn-box-tool(type='button', data-widget='collapse')
+        i.fa.fa-minus
+      .btn-group
+        button.btn.btn-box-tool.dropdown-toggle(type='button', data-toggle='dropdown')
+          i.fa.fa-wrench
+        ul.dropdown-menu(role='menu')
+          li
+            a(href='#') Action
+          li
+            a(href='#') Another action
+          li
+            a(href='#') Something else here
+          li.divider
+          li
+            a(href='#') Separated link
+      button.btn.btn-box-tool(type='button', data-widget='remove')
+        i.fa.fa-times
+  // /.box-header
+  .box-body
+    .row
+      .col-md-12
+        p.text-center
+          strong Sales: 1 Jan, 2014 - 30 Jul, 2014
+        .chart
+          // Sales Chart Canvas
+          //canvas#salesChart(style='height: 180px;')
+          canvas#cos_sin(style='height: 180px;')
+        // /.chart-responsive
+      // /.col
+      //.col-md-4
+        p.text-center
+          strong Goal Completion
+        .progress-group
+          span.progress-text Add Products to Cart
+          span.progress-number
+            b 160
+            | /200
+          .progress.sm
+            .progress-bar.progress-bar-aqua(style='width: 80%')
+        // /.progress-group
+        .progress-group
+          span.progress-text Complete Purchase
+          span.progress-number
+            b 310
+            | /400
+          .progress.sm
+            .progress-bar.progress-bar-red(style='width: 80%')
+        // /.progress-group
+        .progress-group
+          span.progress-text Visit Premium Page
+          span.progress-number
+            b 480
+            | /800
+          .progress.sm
+            .progress-bar.progress-bar-green(style='width: 80%')
+        // /.progress-group
+        .progress-group
+          span.progress-text Send Inquiries
+          span.progress-number
+            b 250
+            | /500
+          .progress.sm
+            .progress-bar.progress-bar-yellow(style='width: 80%')
+        // /.progress-group
+      // /.col
+    // /.row
+  // ./box-body
+  .box-footer
+    .row
+      .col-sm-3.col-xs-6
+        .description-block.border-right
+          span.description-percentage.text-green
+            i.fa.fa-caret-up
+            |  17%
+          h5.description-header $35,210.43
+          span.description-text TOTAL REVENUE
+        // /.description-block
+      // /.col
+      .col-sm-3.col-xs-6
+        .description-block.border-right
+          span.description-percentage.text-yellow
+            i.fa.fa-caret-left
+            |  0%
+          h5.description-header $10,390.90
+          span.description-text TOTAL COST
+        // /.description-block
+      // /.col
+      .col-sm-3.col-xs-6
+        .description-block.border-right
+          span.description-percentage.text-green
+            i.fa.fa-caret-up
+            |  20%
+          h5.description-header $24,813.53
+          span.description-text TOTAL PROFIT
+        // /.description-block
+      // /.col
+      .col-sm-3.col-xs-6
+        .description-block
+          span.description-percentage.text-red
+            i.fa.fa-caret-down
+            |  18%
+          h5.description-header 1200
+          span.description-text GOAL COMPLETIONS
+        // /.description-block
+    // /.row
+  // /.box-footer
+// /.box

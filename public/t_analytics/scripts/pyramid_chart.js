@@ -2,15 +2,18 @@ $(document).ready(function () {
   pyramid_chart_creater(
     {
       label : "年代",
-      data : [ "0-9", "10-19", "20-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80-89", "90-99", "100+" ]
+      data : ["10代","20代","30代","40代","50代","60代"]
+      //data : [ "0-9", "10-19", "20-29", "30-39", "40-49", "50-59", "60-69", "70-79", "80-89", "90-99", "100+" ]
     },
     {
       label : "男性",
-      data : [ 8, 18, 35, 71, 53, 54, 36, 21, 15, 8, 6 ]
+      data : [ 8, 18, 35, 71, 53 ,36 ]
+      //data : [ 8, 18, 35, 71, 53, 54, 36, 21, 15, 8, 6 ]
     },
     {
       label : "女性",
-      data : [ 12, 23, 42, 51, 45, 34, 16, 12, 10, 9, 5 ]
+      data : [ 12, 23, 42, 51, 45 ,34]
+      //data : [ 12, 23, 42, 51, 45, 34, 16, 12, 10, 9, 5 ]
     },
     function (data_arrays,ticks_obj,seriesIndex, pointIndex) {
       // show tooltips
@@ -32,7 +35,8 @@ $(document).ready(function () {
 })
 
 var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_highlight, callback_unhighlight) {
-    var data_arrays = [data1_obj,data2_obj]
+    var data_arrays = [data1_obj,data2_obj];
+    var tooltipOffset = 20-ticks_obj.data.length > 2 ? 20-ticks_obj.data.length : 2;
     var plot1 = jQuery . jqplot(
         'jqPlot-sample',
         [
@@ -41,10 +45,13 @@ var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_h
         ],
         {
             title: '<div style="float: left; width: 50%; text-align: center;">'+data_arrays[0].label+'</div><div style="float: right; width: 50%; text-align: center;">'+data_arrays[1].label+'</div>',
+            seriesColors: ["#4bb2c5","#f2b39b"],
+
             seriesDefaults: {
                 renderer: jQuery . jqplot . PyramidRenderer,
                 rendererOptions: {
-                    barPadding: 4
+                    barPadding: 4,
+                    varyBarColor : false
                 },
                 yaxis: "yaxis",
                 shadow: false
@@ -53,6 +60,8 @@ var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_h
               show : true,
               showMarker : false,
               useAxesFormatters : true,
+              tooltipLocation : 'n',
+              tooltipOffset : tooltipOffset,
               //tooltipFadeSpeed : "def",
               tooltipContentEditor : function(str, seriesIndex, pointIndex){
                         //var splitted = plot._plotData[1][index];
@@ -82,6 +91,7 @@ var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_h
             grid: {
                 drawBorder: true,
                 shadow: false,
+                background: "rgba(0,0,0,0.0)"
             },
             axes: {
                 xaxis: {
@@ -122,9 +132,9 @@ var pyramid_chart_creater = function(ticks_obj, data1_obj, data2_obj ,callback_h
       var series_name = data_arrays[seriesIndex].label;
       var ticks_name = ticks_obj.data[pointIndex];
       var series_value = data_arrays[seriesIndex].data[pointIndex];
-      console.log(series_name);
-      console.log(ticks_name);
-      console.log(series_value);
+      //console.log(series_name);
+      //console.log(ticks_name);
+      //console.log(series_value);
       //setInterval(function () {
         //$("#jqPlot-sample .jqplot-highlighter-tooltip").html(series_name+','+ticks_name+':'+series_value)
       //}, 10);
