@@ -1,0 +1,17 @@
+// Custom tabs (Charts with tabs)
+.nav-tabs-custom
+  // Tabs within a box
+  ul.nav.nav-tabs.pull-right
+    li.active
+      a(href='#revenue-chart', data-toggle='tab') Area
+    li
+      a(href='#sales-chart', data-toggle='tab') Donut
+
+    li.pull-left.header
+      i.fa.fa-inbox
+      |  Sales
+  .tab-content.no-padding
+    // Morris chart - Sales
+    #revenue-chart.chart.tab-pane.active(style='position: relative; height: 300px;')
+    #sales-chart.chart.tab-pane(style='position: relative; height: 300px;')
+// /.nav-tabs-custom
