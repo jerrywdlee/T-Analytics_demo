@@ -1,0 +1,27 @@
+// recommended in ".col-md-4" (<div class='.col-md-4'></div>)
+// Calender
+.box.box-solid(style="background-color:#FFFDF6")
+  script(src="t_analytics/scripts/calendar.js")
+  // fullCalendar 2.2.5
+  link(rel='stylesheet', href='../plugins/fullcalendar/fullcalendar.min.css')
+  link(rel='stylesheet', href='../plugins/fullcalendar/fullcalendar.print.css', media='print')
+  // fullCalendar 2.2.5
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js')
+  script(src='../plugins/fullcalendar/fullcalendar.min.js')
+  .box-header
+    i.fa.fa-calendar-check-o
+    h3.box-title スタンプラリー
+    //h3.box-title Recently Added Products
+    .box-tools.pull-right
+      button.btn.btn-sm(type='button', data-widget='collapse',style="color:#333;background-color:#FFed99")
+        i.fa.fa-minus
+      button.btn.btn-sm(type='button', data-widget='remove',style="background-color:#FFed99")
+        i.fa.fa-times
+  // /.box-header
+  .box-body.no-padding
+    #calendar(style='width: 100%')
+  // /.box-body
+  //.box-footer.text-center
+    a.uppercase(href='javascript:void(0)') View All Products
+  // /.box-footer
+// /.box
