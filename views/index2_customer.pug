@@ -1,0 +1,23 @@
+doctype html
+html
+  include ./include/head.pug
+  body.hold-transition.skin-purple-light.fixed.sidebar-mini.sidebar-collapse
+    // wrapper
+    .wrapper
+      include ./include/header_nav.pug
+      //include ./include/top_navbar_header.pug
+      include ./include/main-sidebar.pug
+      include ./include/content-wrapper_user.pug
+      footer.main-footer
+        .pull-right.hidden-xs
+          b Version
+          |  #{index_config.system_version}
+        strong
+          | Copyright © #{index_config.issuance_date}
+          a(href=index_config.right_holder_url)  #{index_config.right_holder}
+          | .
+        |  All rights
+        |     reserved.
+      include ./include/control-sidebar.pug
+    // ./wrapper
+    include ./include/js_libs.pug
