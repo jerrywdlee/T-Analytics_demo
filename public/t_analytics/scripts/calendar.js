@@ -8,13 +8,28 @@ $(document).ready(function(){
       m = date.getMonth(),
       y = date.getFullYear();
   $('#calendar').fullCalendar({
+    titleFormat: {
+            month: 'Y年M月',                             // 2013年9月
+            week: "yyyy年M月d日", // 2013年9月7日 ～ 13日
+            day: "yyyy年M月d日'('ddd')'"                  // 2013年9月7日(火)
+    },
+    // 月名称
+    monthNames: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    // 月略称
+    monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    // 曜日名称
+    dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
+    // 曜日略称
+    dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
     header: {
-      left: 'prev,next today',
+      //left: 'prev,next today',
+      left: 'prev,next',
       center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      //right: 'month,agendaWeek,agendaDay'
+      right: 'today'
     },
     buttonText: {
-      today: 'today',
+      today: '今日',
       month: 'month',
       week: 'week',
       day: 'day'
