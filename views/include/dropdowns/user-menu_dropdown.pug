@@ -1,18 +1,19 @@
 // User Account: style can be found in dropdown.less
 li.dropdown.user.user-menu
   a.dropdown-toggle(href='#', data-toggle='dropdown')
-    img.user-image(src='t_analytics/images/ware_chu.png', alt='User Image')
+    //img.user-image(src='t_analytics/images/ware_chu.png', alt='User Image')
+    img.user-image(src=index_config.user_icon_normal, alt='User Image')
     span.hidden-xs #{index_config.user_name}
   ul.dropdown-menu
     // User image
     li.user-header
-      img.img-circle(src='t_analytics/images/ware_chu.png', alt='User Image')
+      img.img-circle(src=index_config.user_icon_normal, alt='User Image')
       p
         | #{index_config.user_name} - #{index_config.user_auth}
         small #{index_config.user_company}
     // Menu Body
-    li.user-body
-      //.row
+    //li.user-body
+      .row
         .col-xs-4.text-center
           a(href='#') Followers
         .col-xs-4.text-center

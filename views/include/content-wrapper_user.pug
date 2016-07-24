@@ -1,0 +1,74 @@
+// Content Wrapper. Contains page content
+.content-wrapper
+  // Content Header (Page header)
+  section.content-header
+    h1
+      //small Version 2.0
+    ol.breadcrumb
+      each breadcrumb in breadcrumbs
+          li
+            a(href=breadcrumb.url)
+              i.fa.fa-laptop
+              |  #{breadcrumb.name}
+        else if breadcrumb.name != page_title
+          li: a(href=breadcrumb.url) #{breadcrumb.name}
+        else
+          li.active #{breadcrumb.name}
+    //
+      li
+        a(href='#')
+          i.fa.fa-laptop
+          |  ホーム
+      li.active ダッシュボード
+  // Main content
+  section.content
+    // info-box row
+      //-.col-md-12
+      include ./contents/info-boxes.pug
+    // /.info-box row
+    //.row
+      .col-md-12
+        include ./contents/box_md-12.pug
+      // /.col
+    // /.row
+      .col-md-7
+        include ./contents/plot-chart_md-12.pug
+      .col-md-5
+        // Pie Chart
+        include ./contents/donut-chart_md-4.pug
+    .row
+      .col-md-6
+        // Pyramid CHAT
+        include ./contents/pyramid-chart_md-8.pug
+      .col-md-6
+        //include ./contents/box_nav-tabs-custom.pug
+        include ./contents/google-map_md-8.pug
+    // Main row
+    //.row
+      // Left col
+      .col-md-8
+        // MAP & BOX PANE
+        include ./contents/box-success_md-8.pug
+        .row
+          .col-md-6
+            // DIRECT CHAT
+            include ./contents/box-warning_md-6.pug
+          // /.col
+          .col-md-6
+            // USERS LIST
+            include ./contents/box-danger_md-6.pug
+          // /.col
+        // /.row
+        // TABLE: LATEST ORDERS
+        include ./contents/box-info_md-8.pug
+      // /.col
+      .col-md-4
+        include ./contents/info-boxes_2.pug
+        // Pie Chart
+        include ./contents/box_md-4.pug
+        // PRODUCT LIST
+        include ./contents/box-primary_md-4.pug
+      // /.col
+    // /.row
+  // /.content
+// /.content-wrapper
