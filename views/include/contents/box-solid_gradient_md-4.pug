@@ -1,0 +1,47 @@
+// solid sales graph
+.box.box-solid.bg-teal-gradient
+  script(src="t_analytics/scripts/plot_chart_morris.js")
+  script(src="t_analytics/scripts/jQuery_Knob_init.js")
+  // jQuery Knob Chart
+  script(src='plugins/knob/jquery.knob.js')
+  //script(src="t_analytics/scripts/pyramid_chart.js")
+  //script(src="t_analytics/scripts/plot_chart.js")
+  .box-header
+    i.fa.fa-line-chart
+    h3.box-title 月間使用回数
+    .box-tools.pull-right
+      button.btn.bg-teal.btn-sm(type='button', data-widget='collapse')
+        i.fa.fa-minus
+      button.btn.bg-teal.btn-sm(type='button', data-widget='remove')
+        i.fa.fa-times
+  .box-body.border-radius-none
+    #line-chart.chart(style='height: 290px;')
+    h4.text-center
+      | 使用期間：
+      span(style='font-size:1.25em') 2016-01 ~ 2016-07
+    //#jqPlot-sample.jqplot-target(style='height: 325px; width: 100%; position: relative;')
+    //canvas#cos_sin(style='height: 180px;')
+  // /.box-body
+  .box-footer.no-border
+    .row
+      .col-xs-4.text-center(style='border-right: 1px solid #f4f4f4')
+        input.knob(type='text', data-readonly='true', value='20', data-width='100', data-height='100', data-fgcolor='#39CCCC')
+        .knob-label
+          strong
+            small(style="color:#666") 今月達成率
+      // ./col
+      .col-xs-4.text-center(style='border-right: 1px solid #f4f4f4')
+        input.knob(type='text', data-readonly='true', value='50', data-width='100', data-height='100', data-fgcolor='#39CCCC')
+        .knob-label
+          strong
+            small(style="color:#666") 商品残量
+      // ./col
+      .col-xs-4.text-center
+        input.knob(type='text', data-readonly='true', value='30', data-width='100', data-height='100', data-fgcolor='#39CCCC')
+        .knob-label
+          strong
+            small(style="color:#666") 電池残量
+      // ./col
+    // /.row
+  // /.box-footer
+// /.box

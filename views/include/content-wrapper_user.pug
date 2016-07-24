@@ -3,9 +3,11 @@
   // Content Header (Page header)
   section.content-header
     h1
-      | #{page_title}
+      | こんにちは！
+      strong #{page_title}
+      |さん
       //small Version 2.0
-    ol.breadcrumb
+    ol.breadcrumb.hidden-xs
       each breadcrumb in breadcrumbs
         if breadcrumb.name == index_config.homepage_name
           li
@@ -25,7 +27,7 @@
   // Main content
   section.content
     // info-box row
-    .row
+    //.row
       //-.col-md-12
       include ./contents/info-boxes.pug
     // /.info-box row
@@ -34,19 +36,32 @@
         include ./contents/box_md-12.pug
       // /.col
     // /.row
-    .row
+    //.row
       .col-md-7
         include ./contents/plot-chart_md-12.pug
       .col-md-5
         // Pie Chart
         include ./contents/donut-chart_md-4.pug
     .row
+      style.
+        @media(min-width: 768px){
+          .row {
+            padding: 10px;/* no padding on smart phones*/
+          }
+        }
       .col-md-6
-        // Pyramid CHAT
-        include ./contents/pyramid-chart_md-8.pug
+        .row(style="")
+          //.col-md-11
+            // MORRIS Plot CHART
+          include ./contents/box-solid_gradient_md-4.pug
+        //.row
+          //.col-md-3
+          include ./contents/box-primary_md-4.pug
       .col-md-6
-        //include ./contents/box_nav-tabs-custom.pug
-        include ./contents/google-map_md-8.pug
+        .row
+          include ./contents/calendar_md-6.pug
+          //include ./contents/green-gradient_md-4.pug
+
     // Main row
     //.row
       // Left col

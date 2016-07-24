@@ -53,7 +53,7 @@ var create_google_map = function (div_id,markerData, zoom_lvl) {
 
       // 地図の作成
       var mapLatLng = new google.maps.LatLng({lat: markerData[0]['lat'], lng: markerData[0]['lng']}); // 緯度経度のデータ作成
-      map = new google.maps.Map(document.getElementById('google_map'), { // #sampleに地図を埋め込む
+      map = new google.maps.Map(document.getElementById(div_id), { // #sampleに地図を埋め込む
           //center: mapLatLng, // 地図の中心を指定
           center:bound.getCenter(),
           scrollwheel: false,

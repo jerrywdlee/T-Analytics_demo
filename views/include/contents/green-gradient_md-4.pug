@@ -1,0 +1,58 @@
+
+.box.box-solid.bg-green-gradient
+  .box-header
+    i.fa.fa-calendar
+    h3.box-title Calendar
+    // tools box
+    .pull-right.box-tools
+      // button with a dropdown
+      .btn-group
+        button.btn.btn-success.btn-sm.dropdown-toggle(type='button', data-toggle='dropdown')
+          i.fa.fa-bars
+        ul.dropdown-menu.pull-right(role='menu')
+          li
+            a(href='#') Add new event
+          li
+            a(href='#') Clear events
+          li.divider
+          li
+            a(href='#') View calendar
+      button.btn.btn-success.btn-sm(type='button', data-widget='collapse')
+        i.fa.fa-minus
+      button.btn.btn-success.btn-sm(type='button', data-widget='remove')
+        i.fa.fa-times
+    // /. tools
+  // /.box-header
+  .box-body.no-padding
+    // The calendar
+    //#calendar(style='width: 100%')
+  // /.box-body
+  .box-footer.text-black
+    .row
+      .col-sm-6
+        // Progress bars
+        .clearfix
+          span.pull-left Task #1
+          small.pull-right 90%
+        .progress.xs
+          .progress-bar.progress-bar-green(style='width: 90%;')
+        .clearfix
+          span.pull-left Task #2
+          small.pull-right 70%
+        .progress.xs
+          .progress-bar.progress-bar-green(style='width: 70%;')
+      // /.col
+      .col-sm-6
+        .clearfix
+          span.pull-left Task #3
+          small.pull-right 60%
+        .progress.xs
+          .progress-bar.progress-bar-green(style='width: 60%;')
+        .clearfix
+          span.pull-left Task #4
+          small.pull-right 40%
+        .progress.xs
+          .progress-bar.progress-bar-green(style='width: 40%;')
+      // /.col
+    // /.row
+// /.box
