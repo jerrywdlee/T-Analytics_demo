@@ -14,11 +14,11 @@ $(document).ready(function(){
       label: "六ヶ月"
     },
     {
-      value: 10,
+      value: 20,
       label: "一年"
     },
     {
-      value: 0,
+      value: 10,
       label: "一年以上"
     }
   ]
@@ -74,7 +74,7 @@ var create_donut_charjs = function (canvas_id,donut_data,ending) {
 
   // rewrite labels
   $(canvas_id+"_legend").empty();
-  for (var i = 0; i < donut_data.length; i++) {
+  for (var i = (donut_data.length - 1); i >= 0; i--) {
     $(canvas_id+"_legend").append(
       "<li>"+'<i class="fa fa-circle-o" style="color:'+color_series[i]+'"></i> '+
       donut_data[i].label+"</li>"
