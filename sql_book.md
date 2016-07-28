@@ -90,8 +90,16 @@ CREATE TABLE customers (
                     mail text,
                     birthday date,
                     age_group_id int4, -- 年代
+                    tel text,
                     zip_code text,
-                    address text,
+                    -- address text,
+                    country text, -- 国
+                    state text, -- 都道府県
+                    city text, -- 市・区
+                    district text, -- 町・村１(東京はここまで)
+                    area text, -- 町・村２
+                    location_lat float8, -- 緯度
+                    location_lng float8, -- 経度
                     tag text,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
@@ -115,6 +123,7 @@ CREATE TABLE age_groups (
 CREATE TABLE devices (
                     id serial primary key,
                     uuid text,
+                    customer_id int4,
                     rank_id int4,
                     if_in_delivering int2 default 0, -- 商品配送中フラグ
                     individual_follow_up_trigger text, -- 個別フォロアップトリガー
@@ -124,7 +133,7 @@ CREATE TABLE devices (
                     deleted bool not null default false);
 ```
 
-## ranks(デバイスごとのランク)
+## ranks(ランクの区分)
 ```sql
 CREATE TABLE ranks (
                     id serial primary key,
@@ -169,7 +178,17 @@ INSERT INTO age_groups (age_group,upper_to,lower_to) VALUES
 select * from age_groups where deleted <> true;
 ```
 
+## customers（使用者）
+```sql
+INSERT INTO customers ( name, ruby, mail, birthday, age_group_id, tel,
+                        zip_code, country, state, city, district, area,
+                        location_lat, location_lng, tag ) VALUES
+                      ( $1, $2, $3, $4::date,$5::int, $6::text,
+                        $7::text, $8, $9, $10, $11, $12,
+                        $13::float, $14::float, $15 )
+```
 ## デバイス
+
 ```sql
 INSERT INTO devices (uuid, individual_follow_up_trigger, individual_auto_order_trigger, ) VALUES ($1::text, $2::text, $3::text);
 ```

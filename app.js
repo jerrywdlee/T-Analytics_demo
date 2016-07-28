@@ -31,7 +31,9 @@ app.use('/',breadcrumbs.setHome({
 }));
 
 var server = require('http').createServer(app)
-server.listen(process.env.PORT||port)
+server.listen(process.env.PORT||port,function () {
+  console.log('Listening on port %d', server.address().port);
+})
 
 app.get('/admin',function (req, res) {
   res.redirect('/dashboard');
