@@ -1,0 +1,18 @@
+[
+  {
+    "item_code": "temona_cha",
+    "item_name": "テモナ茶",
+    "info_url": "http://sasami.tamago-cart.com/",
+    "purchase_url": "https://sasami.tamago-cart.com/shop/add_to_cart/?item_qty_15[qty]=1&item_id_15=order&return_url=http://sasami.tamago-cart.com",
+    "default_follow_up_rank_trigger": 2,
+    "default_auto_order_trigger": 1
+  },
+  {
+    "item_code": "temona_pill",
+    "item_name": "テモナピル",
+    "info_url": "http://sasami.tamago-cart.com/",
+    "purchase_url": "https://sasami.tamago-cart.com/shop/add_to_cart/?item_qty_16[qty]=1&item_id_16=order&return_url=http://sasami.tamago-cart.com",
+    "default_follow_up_rank_trigger": 2,
+    "default_auto_order_trigger": 1
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "auth": "god"
+  },
+  {
+    "auth": "admin"
+  },
+  {
+    "auth": "staff"
+  },
+  {
+    "auth": "customer"
+  }
+]

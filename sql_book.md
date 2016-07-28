@@ -37,8 +37,8 @@ CREATE TABLE items (
                     item_name text,
                     info_url text, -- 紹介ページ
                     purchase_url text, -- 購入URL
-                    default_follow_up_trigger text,
-                    default_auto_order_trigger text,
+                    default_follow_up_trigger_id int4,
+                    default_auto_order_trigger_id int4,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
@@ -87,6 +87,7 @@ CREATE TABLE customers (
                     id serial primary key,
                     name text,
                     ruby text, -- 読み方（振仮名）
+                    sex_id int4,
                     mail text,
                     birthday date,
                     age_group_id int4, -- 年代
@@ -101,6 +102,16 @@ CREATE TABLE customers (
                     location_lat float8, -- 緯度
                     location_lng float8, -- 経度
                     tag text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
+## sexes(性別の区分)
+```sql
+CREATE TABLE sexes (
+                    id serial primary key,
+                    sex text,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
@@ -123,15 +134,57 @@ CREATE TABLE age_groups (
 CREATE TABLE devices (
                     id serial primary key,
                     uuid text,
+                    item_id int4,
                     customer_id int4,
                     rank_id int4,
-                    if_in_delivering int2 default 0, -- 商品配送中フラグ
-                    individual_follow_up_trigger text, -- 個別フォロアップトリガー
-                    individual_auto_order_trigger text, -- 個別自動注文トリガー
+                    device_status_id int2 default 1, -- 使用中？配送中？停止中？
+                    individual_follow_up_trigger_id int4, -- 個別フォロアップトリガー
+                    individual_auto_order_trigger_id int4, -- 個別自動注文トリガー
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
 ```
+
+## device_statuses(デバイス状態)
+```sql
+CREATE TABLE device_statuses (
+                    id serial primary key,
+                    device_status text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
+## follow_up_triggers(フォローアップトリガー)
+```sql
+CREATE TABLE follow_up_triggers (
+                    id serial primary key,
+                    param_1 text,
+                    param_1_name text,
+                    condition text,
+                    condition_name text,
+                    param_2 text,
+                    param_2_name text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
+## auto_order_triggers(自動注文トリガー)
+```sql
+CREATE TABLE auto_order_triggers (
+                    id serial primary key,
+                    param_1 text,
+                    param_1_name text,
+                    condition text,
+                    condition_name text,
+                    param_2 text,
+                    param_2_name text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
 
 ## ranks(ランクの区分)
 ```sql
@@ -180,12 +233,12 @@ select * from age_groups where deleted <> true;
 
 ## customers（使用者）
 ```sql
-INSERT INTO customers ( name, ruby, mail, birthday, age_group_id, tel,
+INSERT INTO customers ( name, ruby,sex_id, mail, birthday, age_group_id, tel,
                         zip_code, country, state, city, district, area,
                         location_lat, location_lng, tag ) VALUES
-                      ( $1, $2, $3, $4::date,$5::int, $6::text,
-                        $7::text, $8, $9, $10, $11, $12,
-                        $13::float, $14::float, $15 )
+                      ( $1, $2, $3::int,$4, $5::date,$6::int, $7::text,
+                        $8::text, $9, $10, $11, $12,
+                        $13, $14::float, $15::float, $16 )
 ```
 ## デバイス
 

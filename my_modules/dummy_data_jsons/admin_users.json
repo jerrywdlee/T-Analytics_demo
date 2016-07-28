@@ -1,0 +1,14 @@
+[
+  {
+    "email": "test@temona.co.jp",
+    "name": "TEMONA",
+    "password": 123456,
+    "auth_id": 1
+  },
+  {
+    "email": "admin@temona.co.jp",
+    "name": "Admin",
+    "password": "abcdef",
+    "auth_id": 2
+  }
+]

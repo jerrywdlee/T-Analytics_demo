@@ -1,4 +1,4 @@
-var pg_help = require('./postgres_help')
+var pg_help = require(__dirname+'/postgres_help')
 var fs = require('fs');
 var config = {
   user: 't_analytics', //env var: PGUSER
@@ -12,14 +12,17 @@ var config = {
 
 pg_help.SetConnection(config)
 
-var sql = "INSERT INTO customers ( name, ruby, mail, birthday, age_group_id,"
-          + "tel, zip_code, country, state, city, district, area,"
-          + "location_lat, location_lng, tag ) VALUES"
-          + "( $1, $2, $3, $4::date,$5::int, $6::text,"
-          + "$7::text, $8, $9, $10, $11, $12,"
-          + "$13::float, $14::float, $15 )"
+var table_name = process.argv[2];
+if (!table_name) {
+  console.error("ERROR : NO PARAMETER!!");
+  process.exit()
+}
 
-var params = require('./create_dummy_customers.json');
+var sql_insert = require(__dirname+'/sql_lib/sql_insert');
+
+var sql_select = require(__dirname+'/sql_lib/sql_select');
+
+var params = require(__dirname+ '/dummy_data_jsons/'+ table_name +'.json');
 
 var params_array = []
 for (var i = 0; i < params.length; i++) {
@@ -33,9 +36,9 @@ console.log(params_array);
 
 var call_back = function(res){
   console.log("DONE!!")
-  pg_help.BeginTransaction("select * from customers",[],function (res) {
+  pg_help.BeginTransaction(sql_select.select(table_name),[],function (res) {
       console.log(res)
   })
 }
 
-pg_help.BeginTransaction(sql, params_array, call_back)
+pg_help.BeginTransaction(sql_insert[table_name], params_array, call_back)

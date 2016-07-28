@@ -35,7 +35,7 @@ exports.BeginTransaction =function (sql, params_array, call_back) {
       client.query('BEGIN', function(err, result) {
         console.log("BEGIN!!");
         if(err) return rollback(client, done, err);
-        sql_queries(client, done, sql, params_array, call_back)
+        return sql_queries(client, done, sql, params_array, call_back);
       });
     }
 
@@ -65,6 +65,7 @@ exports.BeginTransaction =function (sql, params_array, call_back) {
 var sql_queries = function (client, done, sql, params_array, call_back, i, results) {
   i = i == undefined ? 0:i;
   results = results == undefined ? [] : results;
+  params_array = params_array.length? params_array : []
   //console.log(i+" : "+params_array[i]);
   client.query(sql, params_array[i], function (err,result) {
     if(err) return rollback(client,done,err);

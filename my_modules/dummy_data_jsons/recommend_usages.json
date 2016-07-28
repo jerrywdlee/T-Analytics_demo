@@ -1,0 +1,24 @@
+[
+  {
+    "item_id": 1,
+    "open_per_morning": 1,
+    "open_per_noon": 0,
+    "open_per_night": 1,
+    "open_per_day": 2,
+    "if_slop": 0,
+    "if_intercept": 0,
+    "if_chi_test": 1,
+    "if_welch_t_test": 0
+  },
+  {
+    "item_id": 2,
+    "open_per_morning": 1,
+    "open_per_noon": 0,
+    "open_per_night": 0,
+    "open_per_day": 1,
+    "if_slop": 0,
+    "if_intercept": 0,
+    "if_chi_test": 1,
+    "if_welch_t_test": 0
+  }
+]
