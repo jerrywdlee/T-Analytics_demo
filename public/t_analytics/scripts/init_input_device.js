@@ -1,4 +1,4 @@
-var age_groups,items,follow_up_triggers,auto_order_triggers;
+var age_groups,items,follow_up_triggers,auto_order_triggers,customers;
 $(document).ready(function() {
 
   init_input_space("sexes",function (data) {
@@ -78,6 +78,9 @@ $(document).ready(function() {
                     + '</option>')
     }
   })
+  init_input_space("customers",function (data) {
+    customers = data
+  })
 
 })
 
@@ -87,4 +90,35 @@ function init_input_space(table_name,call_back) {
     //console.log(data);
     call_back(data);
   })
+}
+
+function set_device_from_table(device) {
+  //console.log(device.uuid);
+  var tmp_customer = customers.filter(function (customer) {
+    return customer.id == device.customer_id;
+  })[0]
+  /*
+  var tmp_age_group = age_groups.filter(function (age_group) {
+    return age_group.id == tmp_customer.age_group_id;
+  })[0]*/
+  //console.log(tmp_customer);
+  $("input.uuid").val(device.uuid)
+  $("select.battery_lvl").val(device.battery_lvl)
+  $("select.device_statuses").val(device.device_status_id)
+  $("select.device_statuses").val(device.device_status_id)
+  $("input.item_code").val(device.item_code)
+  $("select.items").val(device.item_id)
+  $("select.ranks").val(device.rank_id)
+  $("select.auto_order_triggers").val(device.individual_auto_order_trigger_id)
+  $("select.follow_up_triggers").val(device.individual_follow_up_trigger_id)
+  $("input.customer_name").val(device.name)
+  $("input.mail").val(device.mail)
+  $("select.age_groups").val(tmp_customer.age_group_id)
+  $("input.zip_code").val(tmp_customer.zip_code)
+  $("input.ruby").val(tmp_customer.ruby)
+  $("select.sexes").val(tmp_customer.sex_id)
+  $("input.address").val( tmp_customer.state
+                        + tmp_customer.city
+                        + tmp_customer.district
+                        + tmp_customer.area)
 }

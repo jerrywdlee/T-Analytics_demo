@@ -20,6 +20,9 @@ $(document).ready(function() {
         data[i].rank,
         data[i].device_status,
         data[i].remain_lvl,
+        data[i].ot_p1n
+        + " " + data[i].ot_cn + " "
+        + data[i].ot_p2n,
         '<i class="fa fa-battery-'+data[i].battery_lvl+'">'
         + '<span style="display:none">'
         + 'battery='+data[i].battery_lvl
@@ -35,6 +38,7 @@ $(document).ready(function() {
       {title:"ランク"},
       {title:"使用状況"},
       {title:"商品残量"},
+      {title:"自動注文条件"},
       {title:"電池"},
       {title:"最終更新日"}
     ]
@@ -53,6 +57,7 @@ function show_device(id) {
     return device.id == id;
   })
   console.log(device[0]);
+  set_device_from_table(device[0])
 }
 
 var create_datatables_bydata = function (table_id,dataSet,columnNames) {
@@ -63,7 +68,7 @@ var create_datatables_bydata = function (table_id,dataSet,columnNames) {
     "language": {
         "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
     },
-    "order": [[ 8, "desc" ]],
+    "order": [[ 9, "desc" ]],
     stateSave: true,
     "columnDefs": [
       {

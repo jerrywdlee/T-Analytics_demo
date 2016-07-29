@@ -28,7 +28,8 @@ exports.select = function (table_name, select_column_name , condition, limit, or
 exports.create_devices_table = function () {
   sql =
         "SELECT dev.id, dev.uuid, item_id, item_code, item_name, customer_id, cu.name, cu.mail,"
-      + "       rank, device_status,rd.remain_lvl,rd.battery_lvl,rd.opened,"
+      + "       rank_id, rank, device_status_id,device_status,rd.remain_lvl,rd.battery_lvl,rd.opened,"
+      + "       individual_follow_up_trigger_id, individual_auto_order_trigger_id, "
       + "       ft.param_1 as ft_p1, ft.param_1_name as ft_p1n, ft.condition as ft_c, ft.condition_name as ft_cn, ft.param_2 as ft_p2, ft.param_2_name as ft_p2n,"
       + "       ot.param_1 as ot_p1, ot.param_1_name as ot_p1n, ot.condition as ot_c, ot.condition_name as ot_cn, ot.param_2 as ot_p2, ot.param_2_name as ot_p2n,"
       + "       location_lat, location_lng, dev.created_at, rd.updated_at "
