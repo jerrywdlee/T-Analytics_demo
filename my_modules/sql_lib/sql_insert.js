@@ -12,11 +12,11 @@ var SqlQueries = {
   recommend_usages : "INSERT INTO recommend_usages (item_id, "
                    + "open_per_morning, open_per_noon, open_per_night, open_per_day,"
                    + "if_slop, if_intercept, if_chi_test, if_welch_t_test ) "
-                   + "VALUES ($1::int, $2::int, $3::int, $4::int, $5::int,"
+                   + "VALUES ($1::int, $2, $3, $4, $5,"
                    + "$6::int, $7::int, $8::int, $9::int)",
 
   usages      : "INSERT INTO usages (device_id, "
-              + "open_per_morning, open_per_noon, open_per_night, open_per_day"
+              + "open_per_morning, open_per_noon, open_per_night, open_per_day,"
               + "slop, intercept, chi_test, welch_t_test ) "
               + "VALUES ($1::int, $2, $3, $4, $5, $6::float, $7::float, $8::float, $9::float)",
 
@@ -49,8 +49,8 @@ var SqlQueries = {
 
   ranks       : "INSERT INTO ranks (rank) VALUES ($1::text);",
 
-  raw_datas   : "INSERT INTO raw_datas (uuid, remain_lvl, battery_lvl, opened) "
-              + "VALUES ($1:text, $2::int, $3::int, $4::int)"
+  raw_datas   : "INSERT INTO raw_datas (uuid, device_id, remain_lvl, battery_lvl, opened,raw_data) "
+              + "VALUES ($1::text, $2::int, $3::int, $4::int, $5::int,$6::text)"
 
 }
 

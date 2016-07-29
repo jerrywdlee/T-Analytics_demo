@@ -49,10 +49,10 @@ CREATE TABLE items (
 CREATE TABLE recommend_usages (
                     id serial primary key,
                     item_id int4,
-                    open_per_morning int2 DEFAULT 0,
-                    open_per_noon int2 DEFAULT 0,
-                    open_per_night int2 DEFAULT 0,
-                    open_per_day int2 DEFAULT 0,
+                    open_per_morning float8 DEFAULT 0,
+                    open_per_noon float8 DEFAULT 0,
+                    open_per_night float8 DEFAULT 0,
+                    open_per_day float8 DEFAULT 0,
                     if_slop int2, -- 最小二乗法の傾き使うか？
                     if_intercept int2, -- 最小二乗法の切片使うか?
                     if_chi_test int2, -- カイ二乗テスト使うか？
@@ -68,10 +68,10 @@ CREATE TABLE recommend_usages (
 CREATE TABLE usages (
                     id serial primary key,
                     device_id int4,
-                    open_per_morning int2 DEFAULT 0,
-                    open_per_noon int2 DEFAULT 0,
-                    open_per_night int2 DEFAULT 0,
-                    open_per_day int2 DEFAULT 0,
+                    open_per_morning float8 DEFAULT 0,
+                    open_per_noon float8 DEFAULT 0,
+                    open_per_night float8 DEFAULT 0,
+                    open_per_day float8 DEFAULT 0,
                     slop float8,
                     intercept float8,
                     chi_test float8,
@@ -205,12 +205,37 @@ CREATE TABLE raw_datas (
                     remain_lvl int8,
                     battery_lvl int8,
                     opened int2,
+                    raw_data text,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
 ```
 
 # select系
+## 表示用デバイス一覧
+```sql
+SELECT dev.id, dev.uuid, item_id, item_code, item_name, customer_id, cu.name, cu.mail,
+       rank, device_status,rd.remain_lvl,rd.battery_lvl,rd.opened,
+       ft.param_1, ft.param_1_name, ft.condition, ft.condition_name, ft.param_2, ft.param_2_name,
+       ot.param_1, ot.param_1_name, ot.condition, ot.condition_name, ot.param_2, ot.param_2_name,
+       location_lat, location_lng, dev.created_at, rd.updated_at
+       from devices as dev
+LEFT JOIN items as i ON item_id = i.id
+LEFT JOIN customers as cu ON customer_id = cu.id
+LEFT JOIN ranks as r on rank_id = r.id
+LEFT JOIN device_statuses as ds on device_status_id = ds.id
+LEFT JOIN (SELECT * FROM (SELECT id, uuid,device_id, remain_lvl, battery_lvl, opened, updated_at, 
+   row_number() over (partition by uuid order by updated_at DESC) as no
+   FROM raw_datas) as raw WHERE no = 1) as rd  ON dev.uuid = rd.uuid
+LEFT JOIN follow_up_triggers as ft on individual_follow_up_trigger_id = ft.id
+LEFT JOIN auto_order_triggers as ot on individual_auto_order_trigger_id = ot.id
+WHERE dev.deleted <> true and i.deleted <> true and cu.deleted <> true
+      and r.deleted <> true and ds.deleted <> true and ft.deleted <> true and ot.deleted <> true
+order by dev.updated_at desc;
+
+```
+
+
 # insert系
 ## auths(デフォルトの権限)
 ```sql

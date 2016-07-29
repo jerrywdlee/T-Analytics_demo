@@ -1,73 +1,25 @@
 // better in ".col-md-12" (<div class='.col-md-12'></div>)
-.box
+.box.box-info
   // DataTables
   link(rel='stylesheet', href='/plugins/datatables/dataTables.bootstrap.css')
   // DataTables
   script(src='/plugins/datatables/jquery.dataTables.min.js')
   script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script(src="t_analytics/scripts/datatables.js")
+  script(src="t_analytics/scripts/get_url_params.js")
   script.
-    $(document).ready(function() {
-      var table = $('#example1').DataTable( {
-        "ajax": 't_analytics/data/arrays.json',
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
-        },
-        stateSave: true,
-        "columnDefs": [
-          {
-            "render": function ( data, type, row ) {
-              return data +' $';
-            },
-            "targets": 0
-          },
-          {
-              "targets": [ 2 ],
-              "visible": true,
-              "searchable": false
-          },
-          {
-              "targets": [ 3 ],
-              "visible": false
-          }
-        ],
-        "scrollX": true,
-        //scrollY:        '60vh',
-        //scrollY:        '300px',
-        //scrollCollapse: true
-
-      } );
-
-      $('#example1 tbody').on( 'mouseenter', 'td', function () {
-        var colIdx = table.cell(this).index().row;
-        //console.log(colIdx)
-        $( table.rows().nodes() ).removeClass( 'highlight' ).css({"background-color": ""});
-        $( table.rows( colIdx ).nodes() ).addClass( 'highlight' ).css({"background-color": "#FFFDF0"});
-      });
-      $('#example1 tbody').on('mouseleave','td',function(){
-        $( table.rows().nodes() ).removeClass( 'highlight' ).css({"background-color": ""});
-      })
-    });
-
+    console.log(GetParams())
   //style.
-    table.hover tbody>tr.row.highlight {
-      background-color: #FFFF88;
-      border-top: 2px solid #FF0000;
-      border-bottom: 2px solid #FF0000;
+    div.container {
+        width: 80%;
     }
   .box-header
-    h3.box-title Data Table With Full Features
+    i.fa.fa-puzzle-piece
+    h3.box-title 端末一覧
   // /.box-header
   .box-body
     table#example1.table.table-bordered.table-striped.hover
-      thead
-        tr
-          th Name
-          th Position
-          th Office
-          th Extn.
-          th Start date
-          //th Salary
-      //tfoot
+      //thead
         tr
           th Name
           th Position
@@ -75,5 +27,13 @@
           th Extn.
           th Start date
           th Salary
+      //tfoot
+        tr
+          th Name
+          th Position
+          th Office
+          th Extn.
+          th Start date
+          //th Salary
   // /.box-body
 // /.box

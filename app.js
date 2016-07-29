@@ -1,6 +1,20 @@
 var express = require('express');
 var breadcrumbs = require('express-breadcrumbs');
 
+// database setting
+var pg_help = require(__dirname+'/my_modules/postgres_help')
+var pg_config = {
+  user: 't_analytics', //env var: PGUSER
+  database: 't_analytics', //env var: PGDATABASE
+  password: 'postgres', //env var: PGPASSWORD
+  host: 'localhost',//default : 'localhost'
+  port: 5432, //env var: PGPORT
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
+pg_help.SetConnection(pg_config)
+var sql_select = require(__dirname+'/my_modules/sql_lib/sql_select')
+
 var app = express();
 var port = 3033
 
@@ -16,7 +30,7 @@ var index_config = {
   issuance_date : '1970-2016',
   right_holder : 'Jerry Lee',
   right_holder_url : 'https://www.facebook.com/jerrywdlee',
-  system_version : '0.2.7'
+  system_version : '0.3.4'
 }
 
 //app.set('view engine', 'ejs');
@@ -35,6 +49,8 @@ server.listen(process.env.PORT||port,function () {
   console.log('Listening on port %d', server.address().port);
 })
 
+
+//view系
 app.get('/admin',function (req, res) {
   res.redirect('/dashboard');
 })
@@ -70,4 +86,34 @@ app.get('/user',function (req,res) {
     breadcrumbs: req.breadcrumbs()
     //server_url: server_url
  });
+})
+
+app.get('/device_manage', function (req, res) {
+  var page_title = '端末管理'
+  req.breadcrumbs(page_title);
+  res.render('index2_device', {
+    page_class : 'admin',
+    index_config,
+    page_title : page_title,
+    breadcrumbs: req.breadcrumbs()
+    //server_url: server_url
+ });
+});
+
+// Ajax系
+
+app.get('/ajax/show_devices',function (req,res) {
+  pg_help.BeginTransaction(sql_select.create_devices_table(),[],function (sql_res) {
+    if(req.query.debug) console.log(sql_res);
+    res.send(sql_res)
+  })
+})
+
+app.get('/ajax/init_input',function (req,res) {
+  //console.log(req.query.table_name);
+  var table_name = req.query.table_name
+  pg_help.BeginTransaction(sql_select.select(table_name),[],function (sql_res) {
+      console.log(sql_res)
+      res.send(sql_res)
+  })
 })
