@@ -1,0 +1,20 @@
+[
+  {
+    "device_status": "未使用"
+  },
+  {
+    "device_status": "使用中"
+  },
+  {
+    "device_status": "停止中"
+  },
+  {
+    "device_status": "注文登録"
+  },
+  {
+    "device_status": "配送中"
+  },
+  {
+    "device_status": "要対応"
+  }
+]

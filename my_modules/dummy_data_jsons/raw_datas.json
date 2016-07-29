@@ -1,0 +1,82 @@
+[
+  {
+    "uuid": "dd3292fd-5c0e-4567-95f7-7a56ca0d070d",
+    "device_id": 1,
+    "remain_lvl": 100,
+    "battery_lvl": 4,
+    "opened": 1,
+    "raw_data": "{\"uuid\" : \"abcd111123\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : true}"
+  },
+  {
+    "uuid": "3aa04c7b-a8dc-4478-91ca-1d4772d3ae1d",
+    "device_id": 2,
+    "remain_lvl": 75,
+    "battery_lvl": 3,
+    "opened": 1,
+    "raw_data": "{\"uuid\" : \"cdba112234\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : false}"
+  },
+  {
+    "uuid": "75eb0ccc-06b3-4a77-8f65-68918437d2f5",
+    "device_id": 3,
+    "remain_lvl": 100,
+    "battery_lvl": 3,
+    "opened": 1,
+    "raw_data": "{\"uuid\" : \"abcd111123\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : true}"
+  },
+  {
+    "uuid": "3d0f2064-a315-460c-b4e6-fb3c744d5ac1",
+    "device_id": 4,
+    "remain_lvl": 75,
+    "battery_lvl": 2,
+    "opened": 1,
+    "raw_data": "{\"uuid\" : \"cdba112234\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : false}"
+  },
+  {
+    "uuid": "b5aab6b9-08aa-4183-b8e3-c2dd08bcbc03",
+    "device_id": 5,
+    "remain_lvl": 50,
+    "battery_lvl": 3,
+    "opened": 1,
+    "raw_data": "{\"uuid\" : \"abcd111123\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : true}"
+  },
+  {
+    "uuid": "dd3292fd-5c0e-4567-95f7-7a56ca0d070d",
+    "device_id": 1,
+    "remain_lvl": 100,
+    "battery_lvl": 3,
+    "opened": 0,
+    "raw_data": "{\"uuid\" : \"cdba112234\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : false}"
+  },
+  {
+    "uuid": "3aa04c7b-a8dc-4478-91ca-1d4772d3ae1d",
+    "device_id": 2,
+    "remain_lvl": 50,
+    "battery_lvl": 3,
+    "opened": 0,
+    "raw_data": "{\"uuid\" : \"abcd111123\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : true}"
+  },
+  {
+    "uuid": "75eb0ccc-06b3-4a77-8f65-68918437d2f5",
+    "device_id": 3,
+    "remain_lvl": 75,
+    "battery_lvl": 2,
+    "opened": 0,
+    "raw_data": "{\"uuid\" : \"cdba112234\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : false}"
+  },
+  {
+    "uuid": "3d0f2064-a315-460c-b4e6-fb3c744d5ac1",
+    "device_id": 4,
+    "remain_lvl": 25,
+    "battery_lvl": 1,
+    "opened": 0,
+    "raw_data": "{\"uuid\" : \"abcd111123\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : true}"
+  },
+  {
+    "uuid": "b5aab6b9-08aa-4183-b8e3-c2dd08bcbc03",
+    "device_id": 5,
+    "remain_lvl": 25,
+    "battery_lvl": 1,
+    "opened": 0,
+    "raw_data": "{\"uuid\" : \"cdba112234\", \"remain_lvl\" : 100, \"battery_lvl\" : 100, \"opened\" : false}"
+  }
+]
