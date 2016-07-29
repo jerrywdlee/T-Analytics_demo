@@ -30,7 +30,7 @@ var index_config = {
   issuance_date : '1970-2016',
   right_holder : 'Jerry Lee',
   right_holder_url : 'https://www.facebook.com/jerrywdlee',
-  system_version : '0.3.4'
+  system_version : '0.3.5'
 }
 
 //app.set('view engine', 'ejs');
@@ -113,7 +113,7 @@ app.get('/ajax/init_input',function (req,res) {
   //console.log(req.query.table_name);
   var table_name = req.query.table_name
   pg_help.BeginTransaction(sql_select.select(table_name),[],function (sql_res) {
-      console.log(sql_res)
+      //console.log(sql_res)
       res.send(sql_res)
   })
 })

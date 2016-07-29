@@ -10,12 +10,12 @@
         .form-group.input-group-sm
           label UUID:
             //.col-sm-10
-          input.form-control(type='text', placeholder='UUID')
+          input.uuid.form-control(type='text', placeholder='UUID')
       .col-md-2.col-xs-8
         .form-group.input-group-sm
           label 電池電量:
             //.col-sm-10
-          select.form-control
+          select.battery_lvl.form-control
             option(value='4') 100%
             option(value='3') 75%
             option(value='2') 50%
@@ -33,7 +33,7 @@
       .col-md-3
         .form-group.input-group-sm
           label 商品番号:
-          input.form-control(type='text',placeholder='商品番号')
+          input.item_code.form-control(type='text',placeholder='商品番号')
       .col-md-3.col-xs-8
         .form-group.input-group-sm
           label ランク:
@@ -63,7 +63,7 @@
       .col-md-3
         .form-group.input-group-sm
           //label 名前:
-          input.form-control(type='text', placeholder='名前')
+          input.customer_name.form-control(type='text', placeholder='名前')
       //.col-md-3
         .form-group.input-group-sm.input-group
             label 郵便番号:
@@ -74,14 +74,14 @@
         .input-group.input-group-sm
           span.input-group-addon 〒
           //label 郵便番号:
-          input.form-control(type='text',placeholder='郵便番号')
+          input.zip_code.form-control(type='text',placeholder='郵便番号')
           //label 　　　　　　　　　　
           span.input-group-btn
             button.btn.btn-info.btn-flat(type='button') 検索
       .col-md-4
         .form-group.input-group-sm
           //label Email:
-          input.form-control(type='email', placeholder='example@example.com')
+          input.mail.form-control(type='email', placeholder='example@example.com')
       .col-md-2
         .form-group.input-group-sm
           //label.col-sm-2.control-label 性別:
@@ -92,11 +92,11 @@
       .col-md-3
         .form-group.input-group-sm
           //label フリガナ:
-          input.form-control(type='text', placeholder='フリガナ')
+          input.ruby.form-control(type='text', placeholder='フリガナ')
       .col-md-7
         .form-group.input-group-sm
           //label 住所:
-          input.form-control(type='text', placeholder='住所')
+          input.address.form-control(type='text', placeholder='住所')
       //.col-md-3
         .form-group.input-group-sm
           label 住所:
