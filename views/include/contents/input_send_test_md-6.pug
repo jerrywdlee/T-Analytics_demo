@@ -1,0 +1,57 @@
+.box.box-info
+  script(src="t_analytics/scripts/init_input_device.js")
+  .box-header.with-border
+    i.fa.fa-puzzle-piece
+    h3.box-title 端末設定
+  .box-body
+    h4 端末設定：
+    .row
+      .col-md-6
+        .form-group.input-group-sm
+          label UUID:
+            //.col-sm-10
+          input.uuid.form-control(type='text', placeholder='UUID')
+      .col-md-2.col-xs-8
+        .form-group.input-group-sm
+          label 電池電量:
+            //.col-sm-10
+          select.battery_lvl.form-control
+            option(value='4') 100%
+            option(value='3') 75%
+            option(value='2') 50%
+            option(value='1') 25%
+            option(value='0') 0%
+      .col-md-2.col-xs-8
+        .form-group.input-group-sm
+          label 商品残量:
+          select.form-control.remain_lvl
+            option(value='100') 100%
+            option(value='75') 75%
+            option(value='50') 50%
+            option(value='25') 25%
+            option(value='0') 0%
+      .col-md-2.col-xs-8
+        .form-group.input-group-sm
+          label 開けたか？
+          select.form-control.opened
+            option(value='1') 開けた
+            option(value='0') 開けていない
+    .row
+      .col-md-6
+        .form-group.input-group-sm
+          label 既存UUIDを選択:
+            //.col-sm-10
+          select.uuid.form-control
+            option(value='', disabled='', selected='') 既存UUID
+
+  .box-footer
+    .row
+      .col-md-4
+      .col-md-2(style="margin:5px")
+        button.btn.btn-block.btn-warning.clear クリア
+      .col-md-2(style="margin:5px")
+        button.btn.btn-block.btn-primary.send_test 送信
+      .col-md-4
+
+  // /.box-body
+// /.box

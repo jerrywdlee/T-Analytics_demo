@@ -1,0 +1,32 @@
+[
+  {
+    "age_group": "10代",
+    "upper_to": 0,
+    "lower_to": 19
+  },
+  {
+    "age_group": "20代",
+    "upper_to": 20,
+    "lower_to": 29
+  },
+  {
+    "age_group": "30代",
+    "upper_to": 30,
+    "lower_to": 39
+  },
+  {
+    "age_group": "40代",
+    "upper_to": 40,
+    "lower_to": 49
+  },
+  {
+    "age_group": "50代",
+    "upper_to": 50,
+    "lower_to": 59
+  },
+  {
+    "age_group": "60代",
+    "upper_to": 60,
+    "lower_to": 99
+  }
+]

@@ -14,6 +14,7 @@ var pg_config = {
 };
 pg_help.SetConnection(pg_config)
 var sql_select = require(__dirname+'/my_modules/sql_lib/sql_select')
+var sql_insert = require(__dirname+'/my_modules/sql_lib/sql_insert');
 
 var app = express();
 var port = 3033
@@ -63,6 +64,7 @@ app.get('/dashboard', function (req, res) {
   req.breadcrumbs(page_title);
   res.render('index2', {
     page_class : 'admin',
+    content_wrapper : 'content-wrapper',
     index_config,
     page_title : page_title,
     breadcrumbs: req.breadcrumbs()
@@ -91,8 +93,22 @@ app.get('/user',function (req,res) {
 app.get('/device_manage', function (req, res) {
   var page_title = '端末管理'
   req.breadcrumbs(page_title);
-  res.render('index2_device', {
+  res.render('index2', {
     page_class : 'admin',
+    content_wrapper : 'content-wrapper_device_config',
+    index_config,
+    page_title : page_title,
+    breadcrumbs: req.breadcrumbs()
+    //server_url: server_url
+ });
+});
+
+app.get('/test_send', function (req, res) {
+  var page_title = 'テストデータ送信'
+  req.breadcrumbs(page_title);
+  res.render('index2', {
+    page_class : 'test',
+    content_wrapper : 'content-wrapper_device_config',
     index_config,
     page_title : page_title,
     breadcrumbs: req.breadcrumbs()
@@ -116,4 +132,26 @@ app.get('/ajax/init_input',function (req,res) {
       //console.log(sql_res)
       res.send(sql_res)
   })
+})
+
+app.get('/api',function (req,res) {
+  //console.log(req.query);
+  var datas_for_insert = [
+    req.query.uuid,
+    0,
+    req.query.remain_lvl,
+    req.query.battery_lvl,
+    req.query.opened,
+    JSON.stringify(req.query)
+  ]
+  console.log(datas_for_insert);
+  console.log(sql_insert['raw_datas']);
+  pg_help.BeginTransaction(sql_insert['raw_datas'],[datas_for_insert],function (insert_msg) {
+    //console.log(insert_msg);
+    pg_help.BeginTransaction(sql_select.select('raw_datas'),[],function (sql_res) {
+        //console.log(sql_res)
+        res.send(sql_res)
+    })
+  })
+  //res.send(req.query)
 })
