@@ -1,0 +1,241 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<!--
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#ajax_post").click(function () {
+      $.post("/ajax_test",
+      {
+        name : "Ajax Post",
+        url : "www.google.com"
+      },
+      function (data,status) {
+        console.log(data);
+        alert("数据: " + data.name +"\nURL: "+data.url + "\n状态: " + status);
+      })
+    })
+    $("#ajax_get").click(function () {
+      $.get("/ajax_test?name=Ajax%20Get&url=www.google.com",function (data,status) {
+        console.log(data);
+        alert("数据: " + data.name +"\nURL: "+data.url + "\n状态: " + status);
+      })
+    })
+
+    $("#google_geo_api").click(function () {
+      var zip = "150-0001"
+      var language = 'ja'
+      $.ajax({
+        type : "get",
+        url : 'https://maps.googleapis.com/maps/api/geocode/json',
+        crossDomain : true,
+        dataType : 'json',
+        data : {
+          key: "AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM",
+          address : zip,
+          language : language
+        },
+        success : function(resp){
+          if (resp.status.toUpperCase() === "OK") {
+            var target_zip = resp.results[0].address_components[0].long_name;
+            if (target_zip.replace(/-/g,"") == zip.replace(/-/g,"")) {
+              console.log(resp);
+            }else {
+              console.log("Not Japanese Zip!");
+            }
+          }else {
+            console.log("Not Japanese Zip!!!");
+          }
+        }
+      }).fail(function( jqXHR, textStatus, errorThrown ) {
+        console.log(jqXHR.status + " ERROR");
+        console.log( 'ERROR!!', jqXHR, textStatus, errorThrown );
+      });
+    })
+
+    $(".get").on("click","a.get_array_ajx",function () {
+      //alert(typeof parseInt($(this).attr('value')))
+      /*
+      var pageSize = 7
+      $.get("/ajax/pagination?pageNumber="+parseInt($(this).attr('value'))+"&pageSize="+pageSize,function (data,status) {
+        console.log(status,data);
+      }).done(function( res ) {
+        //console.log( 'SUCCESS', res );
+        $("#table").empty()
+        $("#paginate_buttons").empty()
+        res.studentsList.forEach( function( student ) {
+          $("#table").append('<li class="list-group-item">'+ student.name + '</li>')
+        })
+        if (res.pageCount > 1) {
+          if (res.currentPage > 1) {
+            $("#paginate_buttons").append('<li><a href="javascript:alert('+$(this).attr('value')+')" class="get_array_ajx" id="test" value="1" >&laquo;</a></li>')
+            $("#paginate_buttons").append('<li><a href="#" class="get_array_ajx" value="'+(res.currentPage - 1)+'">&lsaquo;</a></li>')
+          }
+        }
+
+      }).fail(function( jqXHR, textStatus, errorThrown ) {
+        console.log(jqXHR.status + " ERROR");
+        console.log( 'ERROR!!', jqXHR, textStatus, errorThrown );
+      });
+      return false
+      */
+      var pageSize = 10
+      var currentPage = $(this).attr('value')
+      get_array_ajx(currentPage,pageSize)
+      return false
+    })
+    var get_array_ajx = function (currentPage,pageSize,paginateLengh) {
+      //alert(typeof parseInt($(this).attr('value')))
+      pageSize = pageSize? pageSize :10
+      currentPage = currentPage?currentPage:1
+      $.get("/ajax/pagination?pageNumber="+parseInt(currentPage)+"&pageSize="+pageSize,function (data,status) {
+        console.log(status,data);
+      }).done(function( res ) {
+        //console.log( 'SUCCESS', res );
+        //テーブル本体の書き換え
+        $("#table").empty()
+        res.studentsList.forEach( function( student ) {
+          $("#table").append('<li class="list-group-item">'+ student.name + '</li>')
+        })
+        //ボタン列の書き換え
+        $("#paginate_buttons").empty()
+        if (res.pageCount > 1) {
+          if (res.currentPage > 1) {
+            $("#paginate_buttons").append('<li><a href="#" class="get_array_ajx" value="1" >&laquo;</a></li>')
+            $("#paginate_buttons").append('<li><a href="#" class="get_array_ajx" value="'+(res.currentPage - 1)+'">&lsaquo;</a></li>')
+          }else {
+            $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)"  >&laquo;</a></li>')
+            $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)"  >&lsaquo;</a></li>')
+          }
+        }
+        var i = 1;
+        var paginateLengh = paginateLengh ? paginateLengh:5;
+        if (res.currentPage >= paginateLengh) {
+          //i = +currentPage - 4;
+          i = res.currentPage - (paginateLengh - 2)
+          if (res.currentPage == res.pageCount){
+            i = res.currentPage - (paginateLengh - 1)
+          }
+        }
+        if (i !== 1) {
+          $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)">...</a></li>')
+        }
+        //console.log(i);
+        for (i; i<=res.pageCount; i++) {
+          if (res.currentPage == i) {
+            $("#paginate_buttons").append('<li class="active"><span>'+i+' <span class="sr-only">(current)</span></span></li>')
+          } else {
+            $("#paginate_buttons").append('<li><a href="#" class="get_array_ajx" value="'+i+'">'+i+'</a></li>')
+          }
+          if (res.currentPage >= paginateLengh){
+            //console.log(res.currentPage);
+            console.log(paginateLengh);
+            // 現在ページの1ページ後まで表示します
+            if (i == (+res.currentPage + 1) && i < res.pageCount) {
+              $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)">...</a></li>')
+              break;
+            }
+          } else {
+            if (i == paginateLengh) {
+              $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)">...</a></li>')
+              break;
+            }
+          }
+        }
+        if (res.currentPage != res.pageCount) {
+          $("#paginate_buttons").append('<li><a href="#" class="get_array_ajx" value="'+(res.currentPage + 1)+'">&rsaquo;</a></li>')
+          $("#paginate_buttons").append('<li><a href="#" class="get_array_ajx" value="'+res.pageCount +'" >&raquo;</a></li>')
+        }else {
+          $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)" >&rsaquo;</a></li>')
+          $("#paginate_buttons").append('<li class="disabled"><a href="javascript:void(0)" >&raquo;</a></li>')
+        }
+
+      }).fail(function( jqXHR, textStatus, errorThrown ) {
+        console.log(jqXHR.status + " ERROR");
+        console.log( 'ERROR!!', jqXHR, textStatus, errorThrown );
+      });
+      return false
+    }
+    get_array_ajx();
+
+    $(".post .get_array_ajx").click(function () {
+      var pageSetting = {
+        pageNumber : parseInt($(this).attr('value')),
+        pageSize : 6
+      }
+      $.post("/ajax/pagination",pageSetting,function (data,status) {
+        console.log(status + "\n" +data);
+      }).done(function( res ) {
+      console.log( 'SUCCESS', res );
+      }).fail(function( jqXHR, textStatus, errorThrown ) {
+      console.log(jqXHR.status + " ERROR");
+      console.log( 'ERROR!!', jqXHR, textStatus, errorThrown );
+    });
+    return false;
+    })
+  });
+</script>
+
+
+<ul class="list-group">
+  <% students.forEach( function( student ) { %>
+      <li class="list-group-item"><%= student.name %></li>
+  <% }) %>
+</ul>
+
+<% if (pageCount > 1) { %>
+<ul class="pagination">
+  <% if (currentPage > 1) { %>
+      <li><a href="/?page=1">&laquo;</a></li>
+      <li><a href="/?page=<%= currentPage - 1 %>">&lsaquo;</a></li>
+  <% } %>
+  <% var i = 1;
+     var paginate_lengh = 5;
+     if (currentPage >= paginate_lengh) {
+      //i = +currentPage - 4;
+      i = currentPage - (paginate_lengh - 2)
+      if (currentPage == pageCount){
+        i = currentPage - (paginate_lengh - 1)
+      }
+     } %>
+  <% if (i !== 1) { %>
+      <li class="disabled"><a href="#">...</a></li>
+  <% } %>
+  <% for (i; i<=pageCount; i++) {
+       if (currentPage == i) { %>
+        <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+    <% } else { %>
+        <li><a href="/?page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    <% if (currentPage >= paginate_lengh){ %>
+      <% if (i == (+currentPage + 1) && i < pageCount) { %>
+          <li class="disabled"><a href="#">...</a></li>
+      <% break; } %>
+    <% } else { %>
+      <% if (i == paginate_lengh) { %>
+          <li class="disabled"><a href="#">...</a></li>
+      <% break; } %>
+    <% } %>
+  <% } %>
+  <% if (currentPage != pageCount) { %>
+      <li><a href="/?page=<%= currentPage + 1 %>">&rsaquo;</a></li>
+      <li><a href="/?page=<%= pageCount %>">&raquo;</a></li>
+  <% } %>
+</ul>
+<% } %>
+
+<div id="ajax">
+  <h1>Ajax</h1>
+  <button type="button" name="button" id="ajax_post">Ajax Post</button>
+  <button type="button" name="button" id="ajax_get">Ajax Get</button>
+  <button type="button" name="button" id="google_geo_api">Google Geo API(Get)</button>
+
+  <p class="get">GET : <a href="#" class="get_array_ajx" value="1">1</a>  <a href="#" class="get_array_ajx" value="2">2</a></p>
+  <p class="post">POST : <a href="#" class="get_array_ajx" value="1">1</a>  <a href="#" class="get_array_ajx" value="2">2</a></p>
+  <ul id="table" class="list-group" ></ul>
+  <ul id="paginate_buttons" class="pagination get" ></ul>
+</div>

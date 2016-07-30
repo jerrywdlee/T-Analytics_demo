@@ -46,10 +46,14 @@
       style.
         @media(min-width: 768px){
           .row {
-            padding: 10px;/* no padding on smart phones*/
+            /* padding: 10px; */ /* no padding on smart phones*/
+            /* padding-top: 50px; */
+            padding-right: 10px;
+            /* padding-bottom: 50px; */
+            padding-left: 10px;
           }
         }
-      .col-md-6
+      .col-md-5.col-lg-6
         .row(style="")
           //.col-md-11
             // MORRIS Plot CHART
@@ -57,7 +61,7 @@
         //.row
           //.col-md-3
           include ./contents/box-primary_md-4.pug
-      .col-md-6
+      .col-md-7.col-lg-6
         .row
           include ./contents/calendar_md-6.pug
           //include ./contents/green-gradient_md-4.pug
