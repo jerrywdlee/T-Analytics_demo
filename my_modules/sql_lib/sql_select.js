@@ -49,3 +49,12 @@ exports.create_devices_table = function () {
   //console.log(sql);
   return sql;
 }
+
+
+exports.advanced_raw_datas = function () {
+  advanced_raw_datas  = " SELECT rd.id, rd.uuid, cus.name, remain_lvl, battery_lvl, opened, raw_data,  "
+                      + " rd.created_at, rd.updated_at FROM raw_datas as rd LEFT JOIN  "
+                      + " (SELECT cu.name as name, d.uuid as ud FROM devices as d,  "
+                      + " customers as cu WHERE d.customer_id = cu.id ) as cus ON cus.ud = rd.uuid "
+  return advanced_raw_datas;
+}

@@ -31,7 +31,7 @@ var index_config = {
   issuance_date : '1970-2016',
   right_holder : 'Jerry Lee',
   right_holder_url : 'https://www.facebook.com/jerrywdlee',
-  system_version : '0.3.5'
+  system_version : '0.3.7'
 }
 
 //app.set('view engine', 'ejs');
@@ -144,14 +144,23 @@ app.get('/api',function (req,res) {
     req.query.opened,
     JSON.stringify(req.query)
   ]
-  console.log(datas_for_insert);
-  console.log(sql_insert['raw_datas']);
+  //console.log(datas_for_insert);
+  //console.log(sql_insert['raw_datas']);
+  //BeginTransactionの引数２は二次元行列
   pg_help.BeginTransaction(sql_insert['raw_datas'],[datas_for_insert],function (insert_msg) {
     //console.log(insert_msg);
-    pg_help.BeginTransaction(sql_select.select('raw_datas'),[],function (sql_res) {
+    res.send("OK")
+    //pg_help.BeginTransaction(sql_select.select('raw_datas'),[],function (sql_res) {
         //console.log(sql_res)
-        res.send(sql_res)
-    })
+        //res.send(sql_res)
+    //})
   })
   //res.send(req.query)
+})
+
+app.get('/ajax/advanced_raw_datas',function (req,res) {
+  pg_help.BeginTransaction(sql_select.advanced_raw_datas(),[],function (sql_res) {
+    console.log({data : sql_res})
+    res.send({ data : sql_res })
+  })
 })

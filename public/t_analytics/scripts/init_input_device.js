@@ -135,9 +135,13 @@ $(document).ready(function() {
 
       }).done(function (data) {
         $(this_button).html("送信完成").addClass("btn-success").prop("disabled", true);
-        console.log(data);
+        //raw_datasを更新
+        datatables_test_send.ajax.reload(function ( json ) {
+          console.log(json);
+        });
+        //console.log(data);
       }).fail(function (data,status) {
-        console.log(data);
+        //console.log(data);
         //console.log(status);
         $(this_button).html("送信失敗").addClass("btn-danger").prop("disabled", true);
       }).always(function (data) {

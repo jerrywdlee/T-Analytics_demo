@@ -5,7 +5,7 @@
   // DataTables
   script(src='/plugins/datatables/jquery.dataTables.min.js')
   script(src='/plugins/datatables/dataTables.bootstrap.min.js')
-  script(src="t_analytics/scripts/datatables.js")
+  script(src="t_analytics/scripts/datatables_test_send.js")
   script(src="t_analytics/scripts/get_url_params.js")
   script.
     console.log(GetParams())
@@ -15,25 +15,7 @@
     }
   .box-header
     i.fa.fa-database
-    h3.box-title 端末一覧
+    h3.box-title 端末データ一覧
   // /.box-header
   .box-body
-    table#example1.table.table-bordered.table-striped.hover
-      //thead
-        tr
-          th Name
-          th Position
-          th Office
-          th Extn.
-          th Start date
-          th Salary
-      //tfoot
-        tr
-          th Name
-          th Position
-          th Office
-          th Extn.
-          th Start date
-          //th Salary
-  // /.box-body
-// /.box
+    table#datatables_test_send.table.table-bordered.table-striped.hover
