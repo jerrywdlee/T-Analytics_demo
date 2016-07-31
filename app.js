@@ -160,7 +160,7 @@ app.get('/api',function (req,res) {
 
 app.get('/ajax/advanced_raw_datas',function (req,res) {
   pg_help.BeginTransaction(sql_select.advanced_raw_datas(),[],function (sql_res) {
-    console.log({data : sql_res})
+    //console.log({data : sql_res})
     res.send({ data : sql_res })
   })
 })
