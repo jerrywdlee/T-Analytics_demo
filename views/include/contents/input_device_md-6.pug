@@ -11,7 +11,7 @@
           label UUID:
             //.col-sm-10
           input.uuid.form-control(type='text', placeholder='UUID')
-      .col-md-2.col-xs-8
+      .col-md-2.col-xs-12
         .form-group.input-group-sm
           label 電池電量:
             //.col-sm-10
@@ -21,7 +21,7 @@
             option(value='2') 50%
             option(value='1') 25%
             option(value='0') 0%
-      .col-md-2.col-xs-8
+      .col-md-2.col-xs-12
         .form-group.input-group-sm
           label 端末状況:
           select.form-control.device_statuses
@@ -34,24 +34,24 @@
         .form-group.input-group-sm
           label 商品番号:
           input.item_code.form-control(type='text',placeholder='商品番号')
-      .col-md-3.col-xs-8
+      .col-md-3.col-xs-12
         .form-group.input-group-sm
           label ランク:
           select.form-control.ranks
             option(value='', disabled='', selected='') ランク
-      .col-md-6.col-xs-8
+      .col-md-6.col-xs-12
         .form-group.input-group-sm
           label 自動注文トリガー:
           select.form-control.auto_order_triggers
             option(value='', disabled='', selected='') 自動注文トリガー
 
     .row
-      .col-md-6.col-xs-8
+      .col-md-6.col-xs-12
         .form-group.input-group-sm
           label 商品:
           select.form-control.items
             option(value='', disabled='', selected='') 商品名 (商品番号)
-      .col-md-6.col-xs-8
+      .col-md-6.col-xs-12
         .form-group.input-group-sm
           label フォローアップトリガー:
           select.form-control.follow_up_triggers
@@ -78,25 +78,18 @@
           //label 　　　　　　　　　　
           span.input-group-btn
             button.btn.btn-info.btn-flat(type='button') 検索
-      .col-md-4
+      .col-md-6
         .form-group.input-group-sm
-          //label Email:
-          input.mail.form-control(type='email', placeholder='example@example.com')
-      .col-md-2
-        .form-group.input-group-sm
-          //label.col-sm-2.control-label 性別:
-          select.sexes.form-control
-            option(value='', disabled='', selected='') 性別
+          //label 住所:
+          input.address.form-control(type='text', placeholder='住所')
+
 
     .row
       .col-md-3
         .form-group.input-group-sm
           //label フリガナ:
           input.ruby.form-control(type='text', placeholder='フリガナ')
-      .col-md-7
-        .form-group.input-group-sm
-          //label 住所:
-          input.address.form-control(type='text', placeholder='住所')
+
       //.col-md-3
         .form-group.input-group-sm
           label 住所:
@@ -105,7 +98,15 @@
         .form-group.input-group-sm
           select.form-control.age_groups
             option(value='', disabled='', selected='') 年代
-
+      .col-md-2
+        .form-group.input-group-sm
+          //label.col-sm-2.control-label 性別:
+          select.sexes.form-control
+            option(value='', disabled='', selected='') 性別
+      .col-md-5
+        .form-group.input-group-sm
+          //label Email:
+          input.mail.form-control(type='email', placeholder='example@example.com')
 
   .box-footer
     .row
