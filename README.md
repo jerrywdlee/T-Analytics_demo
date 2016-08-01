@@ -17,6 +17,14 @@ create user t_analytics with password 'postgres'; -- ユーザーの新規登録
 create database t_analytics owner t_analytics; -- DB作成
 ```
 
+## postgres権限解放
+```sh
+vi /var/lib/pgsql/data/pg_hba.conf
+# 全ての ident を md5 に
+/etc/rc.d/init.d/postgresql restart
+```
+
+
 ## [nvmのインストール](https://github.com/creationix/nvm)
 ```sh
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
@@ -29,12 +37,12 @@ nvm install node
 
 ## 本レポジトリのダウンロード
 ```sh
-git clone -b t_analytics https://github.com/TEMONA/rchecker.git
+git clone -b lee_T_analytics https://USERNAME@github.com/jerrywdlee-temona/rchecker.git
 ```
 
 ## 依頼パッケージのインストール
 ```sh
-cd t_analytics
+cd rchecker
 npm install
 
 npm install forever -g
