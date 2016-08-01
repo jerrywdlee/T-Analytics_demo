@@ -224,7 +224,7 @@ LEFT JOIN items as i ON item_id = i.id
 LEFT JOIN customers as cu ON customer_id = cu.id
 LEFT JOIN ranks as r on rank_id = r.id
 LEFT JOIN device_statuses as ds on device_status_id = ds.id
-LEFT JOIN (SELECT * FROM (SELECT id, uuid,device_id, remain_lvl, battery_lvl, opened, updated_at, 
+LEFT JOIN (SELECT * FROM (SELECT id, uuid,device_id, remain_lvl, battery_lvl, opened, updated_at,
    row_number() over (partition by uuid order by updated_at DESC) as no
    FROM raw_datas) as raw WHERE no = 1) as rd  ON dev.uuid = rd.uuid
 LEFT JOIN follow_up_triggers as ft on individual_follow_up_trigger_id = ft.id
@@ -233,6 +233,12 @@ WHERE dev.deleted <> true and i.deleted <> true and cu.deleted <> true
       and r.deleted <> true and ds.deleted <> true and ft.deleted <> true and ot.deleted <> true
 order by dev.updated_at desc;
 
+```
+
+## advanced_raw_datas
+```sql
+SELECT rd.id, rd.uuid, cus.name, remain_lvl, battery_lvl, opened, raw_data, rd.created_at, rd.updated_at FROM raw_datas as rd LEFT JOIN
+(SELECT cu.name as name, d.uuid as ud FROM devices as d, customers as cu WHERE d.customer_id = cu.id ) as cus ON cus.ud = rd.uuid
 ```
 
 

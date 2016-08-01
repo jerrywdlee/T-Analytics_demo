@@ -1,5 +1,7 @@
 //https://www.ipentec.com/document/document.aspx?page=javascript-get-parameter
 function GetParams() {
+  var href = window.location.href ;
+  console.log(href);
   if (1 < document.location.search.length) {
     // 最初の1文字 (?記号) を除いた文字列を取得する
     //console.log(document.location.search)

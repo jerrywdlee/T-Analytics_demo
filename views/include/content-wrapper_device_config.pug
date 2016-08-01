@@ -16,66 +16,26 @@
           li: a(href=breadcrumb.url) #{breadcrumb.name}
         else
           li.active #{breadcrumb.name}
-    //
-      li
-        a(href='#')
-          i.fa.fa-laptop
-          |  ホーム
-      li.active ダッシュボード
   // Main content
   section.content
     // info-box row
     .row
       //-.col-md-12
       include ./contents/info-boxes.pug
-    // /.info-box row
-    //.row
-      .col-md-12
-        include ./contents/box_md-12.pug
-      // /.col
-    // /.row
-    //.row
-      .col-md-6.col-lg-7
-        include ./contents/plot-chart_md-12.pug
-      .col-md-6.col-lg-5
-        // Pie Chart
-        include ./contents/donut-chart_md-4.pug
-    .row
-      .col-md-12.col-lg-12
-        // Pyramid CHAT
-        include ./contents/input_device_md-6.pug
-      //.col-md-6
-        //include ./contents/box_nav-tabs-custom.pug
-        //include ./contents/google-map_md-8.pug
-    .row
-      .col-md-12
-        include ./contents/datatables_md-12.pug
-    // Main row
-    //.row
-      // Left col
-      .col-md-8
-        // MAP & BOX PANE
-        include ./contents/box-success_md-8.pug
+    case page_class
+      when "test"
         .row
-          .col-md-6
-            // DIRECT CHAT
-            include ./contents/box-warning_md-6.pug
-          // /.col
-          .col-md-6
-            // USERS LIST
-            include ./contents/box-danger_md-6.pug
-          // /.col
-        // /.row
-        // TABLE: LATEST ORDERS
-        include ./contents/box-info_md-8.pug
-      // /.col
-      .col-md-4
-        include ./contents/info-boxes_2.pug
-        // Pie Chart
-        include ./contents/box_md-4.pug
-        // PRODUCT LIST
-        include ./contents/box-primary_md-4.pug
-      // /.col
-    // /.row
-  // /.content
-// /.content-wrapper
+          .col-md-12.col-lg-12
+            // input boxes
+            include ./contents/input_send_test_md-6.pug
+        .row
+          .col-md-12.col-lg-12
+            include ./contents/datatables_test_send.pug
+      default
+        .row
+          .col-md-12.col-lg-12
+            // input boxes
+            include ./contents/input_device_md-6.pug
+        .row
+          .col-md-12
+            include ./contents/datatables_md-12.pug
