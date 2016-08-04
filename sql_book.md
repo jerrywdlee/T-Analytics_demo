@@ -1,4 +1,6 @@
 # DB作成
+データベースの形式は：
+https://docs.google.com/spreadsheets/d/1PihDY34f4FE6L9D5gh9iJNNDMi5mAIVdDVsBW8S9iYY/edit#gid=0
 ```sql
 #psql -U postgres
 create user t_analytics with password 'postgres'; -- ユーザーの新規登録
@@ -290,7 +292,10 @@ INSERT INTO customers ( name, ruby,sex_id, mail, birthday, age_group_id, tel,
 ## デバイス
 
 ```sql
-INSERT INTO devices (uuid, individual_follow_up_trigger, individual_auto_order_trigger, ) VALUES ($1::text, $2::text, $3::text);
+INSERT INTO devices (uuid, item_id, customer_id, rank_id, device_status_id,
+                     individual_follow_up_trigger_id, individual_auto_order_trigger_id )
+                     VALUES ($1::text, $2::int, $3::int, $4::int, $5, $6::int, $7::int);
+
 ```
 
 ## ランク
