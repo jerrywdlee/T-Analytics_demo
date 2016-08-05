@@ -60,7 +60,7 @@ app.get('/admin',function (req, res) {
   res.redirect('/dashboard');
 })
 app.get('/',function (req, res) {
-  res.redirect('/user'+'?admin_user_id=2');
+  res.redirect('/user'+'?customer_id=2');
 })
 
 app.get('/dashboard', function (req, res) {
