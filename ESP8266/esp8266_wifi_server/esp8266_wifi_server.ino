@@ -20,6 +20,9 @@ const char* settings = "/wifi_settings.txt";
 // サーバモードでのパスワード
 const String pass = "esp8266wifi";
 
+int opened = 0;//開封かどうかを最初から測る
+
+
 //電力消耗:
 //稼働中: 5V 0.07A
 //Sleep: 5V 0.00A(<10mA)
@@ -43,7 +46,7 @@ void handleRootGet() {
   html += "<form method='post'>";
   html += "  <input type='text' name='ssid' placeholder='ssid' value='"+ ssid +"'><br>";
   html += "  <input type='text' name='pass' placeholder='pass' value='"+ pass +"'><br>";
-  html += "  <input type='text' name='uuid' placeholder='ssid' value='"+ uuid +"'><br>";
+  html += "  <input type='text' name='uuid' placeholder='uuid' value='"+ uuid +"'><br>";
   //html += "  <input type='text' name='host' placeholder='pass' value='"+ host +"'><br>";
   html += "  <input type='number' name='sleep' placeholder='sleep minute' value='"+ sleep_str +"'><br>";
   html += "  <input type='submit'><br>";
@@ -96,16 +99,16 @@ int read_mcp3002(int CH_NUM){
   }
   Serial.print("Vol: ");
   Serial.println(vol);
-  if (vol > 550) {
+  if (vol > 710) {
     return 100;  
   } 
-  if (vol > 500) {
+  if (vol > 680) {
     return 75;  
   } 
-  if (vol > 450) {
+  if (vol > 650) {
     return 50;  
   } 
-  if (vol > 400) {
+  if (vol > 600) {
     return 25;  
   } 
   
@@ -128,12 +131,7 @@ int read_mcp3002(int CH_NUM){
  * 初期化(クライアントモード)
  */
 void setup_client() {
-  pinMode(4, INPUT);
-  Serial.print("Pin4: ");
-  Serial.println(digitalRead(4));
-  int opened = digitalRead(4) == 0? 1:0;
-
-  
+    
   File f = SPIFFS.open(settings, "r");
   String ssid = f.readStringUntil('\n');
   String pass = f.readStringUntil('\n');
@@ -230,6 +228,10 @@ void setup_client() {
   Serial.println();
   Serial.println("closing connection");
 
+  //pin4 のリセット
+  pinMode(4, OUTPUT);
+  digitalWrite(4, HIGH); 
+
   delay(10 * 1000);
   //休眠、数分後ResetにIO16から負のパルスを発信して復帰
   ESP.deepSleep(sleep * 60 * 1000 * 1000);
@@ -264,6 +266,10 @@ void setup_server() {
 void setup() {
   Serial.begin(115200);
   Serial.println();
+  pinMode(4, INPUT);
+  Serial.print("Pin4: ");
+  Serial.println(digitalRead(4));
+  int opened = digitalRead(4) == 0? 1:0;
   spi_init(HSPI);
 
   // 1秒以内にMODEを切り替える
