@@ -2,6 +2,77 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
 
+
+var User = {
+  users : [{ username: 'test_user1' , password: 'pass1', displayName: 'Test User1'},
+           { username: 'test2' , password: 'pass', displayName: 'Test User2'}],
+  findOne : function(username,callback) {
+    let user = this.users.filter((users)=>{
+        return users.username === username;
+    })[0]
+    if (user) {
+      return callback(null, user)
+    } else {
+      return callback(null, null)
+    }
+  }
+}
+
+var User2 = {
+  users : [{ username: 'test_user3' , password: 'pass3', displayName: 'Test User3'},
+           { username: 'test4' , password: 'pass4', displayName: 'Test User4'}],
+  findOne : function(username,callback) {
+    let user = this.users.filter((users)=>{
+        return users.username === username;
+    })[0]
+    if (user) {
+      return callback(null, user)
+    } else {
+      return callback(null, null)
+    }
+  }
+}
+
+var passport = require('passport');
+var DigestStrategy = require('passport-http').DigestStrategy;
+passport.use(new DigestStrategy({ qop: 'auth' },
+  function(username, done) {
+    User.findOne(username , function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false);
+      }
+      return done(null, user, user.password);
+    });
+  },
+  function(params, done) {
+    // 必要であればnonceの検証をしてください
+    done(null, true)
+  }
+));
+var BasicStrategy = require('passport-http').BasicStrategy;
+passport.use(new BasicStrategy(
+  function(username, password, done) {
+    User2.findOne(username , function (err, user) {
+      //console.log(user.password);
+      console.log(password);
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false);
+      }
+      if (user.password !== password) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  },
+  function(params, done) {
+    // 必要であればnonceの検証をしてください
+    done(null, true)
+  }
+));
+
+
 app.set('views', 'views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
@@ -116,6 +187,37 @@ app.get('/ajax_test',function (req, res){
 })
 
 //app.post('/ajax/')
+
+
+//Digest認証テスト
+app.get('/digest',
+  passport.authenticate('digest', { session: false,
+    //successRedirect: '/',
+    //failureRedirect: '/'
+  }),
+  function(req, res) {
+
+    res.send(`<h3>Digest Auth : </h3>${JSON.stringify(req.user)}`);
+});
+//BASIC認証テスト
+app.get('/basic',
+  passport.authenticate('basic', { session: false,
+    //successRedirect: '/',
+    //failureRedirect: '/'
+  }),
+  function(req, res) {
+    res.send(`<h3>Basic Auth : </h3>${JSON.stringify(req.user)}`);
+});
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+
+
+
+
+
 
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);

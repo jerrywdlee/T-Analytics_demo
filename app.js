@@ -1,8 +1,11 @@
-var express = require('express');
-var breadcrumbs = require('express-breadcrumbs');
+const express = require('express');
+const breadcrumbs = require('express-breadcrumbs');
+const YAML = require('yamljs');
 
 // database setting
-var pg_help = require(__dirname+'/my_modules/postgres_help')
+const pg_help = require(__dirname+'/my_modules/postgres_help')
+const pg_config = YAML.load(__dirname+'/configs/pg_config.yml')
+/*
 var pg_config = {
   user: 't_analytics', //env var: PGUSER
   database: 't_analytics', //env var: PGDATABASE
@@ -12,6 +15,7 @@ var pg_config = {
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
 };
+*/
 pg_help.SetConnection(pg_config)
 var sql_select = require(__dirname+'/my_modules/sql_lib/sql_select')
 var sql_insert = require(__dirname+'/my_modules/sql_lib/sql_insert');
@@ -37,8 +41,9 @@ var index_config = {
 //app.set('view engine', 'ejs');
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
-app.use(express.static('public'));
-app.use(breadcrumbs.init());
+app.use(express.static('public'));//フォルダー 'public' 配下は静的ファイル
+
+app.use(breadcrumbs.init());// パンくず
 // Set Breadcrumbs home information
 app.use('/',breadcrumbs.setHome({
   name: index_config.homepage_name,
