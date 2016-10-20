@@ -1,14 +1,18 @@
 [
   {
-    "email": "test@temona.co.jp",
-    "name": "TEMONA",
+    "email": "Lee@temona.co.jp",
+    "name": "Lee-TEMONA",
     "password": 123456,
-    "auth_id": 1
+    "auth_id": 1,
+    "icon_name" : "lee.png",
+    "organization" : "TEMONA"
   },
   {
-    "email": "admin@temona.co.jp",
-    "name": "Admin",
+    "email": "hinode@temona.co.jp",
+    "name": "Hinode-TEMONA",
     "password": "abcdef",
-    "auth_id": 2
+    "auth_id": 2,
+    "icon_name" : "hinode.png",
+    "organization" : "TEMONA"
   }
 ]

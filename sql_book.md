@@ -1,4 +1,6 @@
 # DB作成
+データベースの形式は：
+https://docs.google.com/spreadsheets/d/1PihDY34f4FE6L9D5gh9iJNNDMi5mAIVdDVsBW8S9iYY/edit#gid=0
 ```sql
 #psql -U postgres
 create user t_analytics with password 'postgres'; -- ユーザーの新規登録
@@ -14,6 +16,8 @@ CREATE TABLE admin_users (
                   name text,
                   password text,
                   auth_id int4,
+                  icon_name text,
+                  organization text,
                   created_at timestamp with time zone DEFAULT clock_timestamp(), -- create timestamp with zone
                   updated_at timestamp with time zone DEFAULT clock_timestamp(), -- now()はトランザクション時間
                   deleted bool not null default false);
@@ -83,28 +87,28 @@ CREATE TABLE usages (
 
 ## customers（使用者）
 ```sql
-CREATE TABLE customers (
-                    id serial primary key,
-                    name text,
-                    ruby text, -- 読み方（振仮名）
-                    sex_id int4,
-                    mail text,
-                    birthday date,
-                    age_group_id int4, -- 年代
-                    tel text,
-                    zip_code text,
-                    -- address text,
-                    country text, -- 国
-                    state text, -- 都道府県
-                    city text, -- 市・区
-                    district text, -- 町・村１(東京はここまで)
-                    area text, -- 町・村２
-                    location_lat float8, -- 緯度
-                    location_lng float8, -- 経度
-                    tag text,
-                    created_at timestamp with time zone DEFAULT clock_timestamp(),
-                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
-                    deleted bool not null default false);
+CREATE TABLE customers (id serial primary key,
+                        name text,
+                        ruby text, -- 読み方（振仮名）
+                        sex_id int4,
+                        mail text,
+                        birthday date,
+                        age_group_id int4, -- 年代
+                        tel text,
+                        customer_icon text,
+                        zip_code text,
+                        -- address text,
+                        country text, -- 国
+                        state text, -- 都道府県
+                        city text, -- 市・区
+                        district text, -- 町・村１(東京はここまで)
+                        area text, -- 町・村２
+                        location_lat float8, -- 緯度
+                        location_lng float8, -- 経度
+                        tag text,
+                        created_at timestamp with time zone DEFAULT clock_timestamp(),
+                        updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                        deleted bool not null default false);
 ```
 
 ## sexes(性別の区分)
@@ -241,6 +245,20 @@ SELECT rd.id, rd.uuid, cus.name, remain_lvl, battery_lvl, opened, raw_data, rd.c
 (SELECT cu.name as name, d.uuid as ud FROM devices as d, customers as cu WHERE d.customer_id = cu.id ) as cus ON cus.ud = rd.uuid
 ```
 
+## 管理者を選択
+```sql
+SELECT * FROM admin_users as ad
+LEFT JOIN auths AS au ON auth_id = au.id WHERE ad.id = $1
+```
+
+## 顧客を選択
+```sql
+SELECT * FROM customers AS cu
+LEFT JOIN devices AS dev ON customer_id = cu.id
+LEFT JOIN ranks AS r ON rank_id = r.id
+WHERE cu.deleted <> true AND dev.deleted <> true
+AND cu.id = $1 ORDER BY rank_id limit 1;
+```
 
 # insert系
 ## auths(デフォルトの権限)
@@ -274,7 +292,10 @@ INSERT INTO customers ( name, ruby,sex_id, mail, birthday, age_group_id, tel,
 ## デバイス
 
 ```sql
-INSERT INTO devices (uuid, individual_follow_up_trigger, individual_auto_order_trigger, ) VALUES ($1::text, $2::text, $3::text);
+INSERT INTO devices (uuid, item_id, customer_id, rank_id, device_status_id,
+                     individual_follow_up_trigger_id, individual_auto_order_trigger_id )
+                     VALUES ($1::text, $2::int, $3::int, $4::int, $5, $6::int, $7::int);
+
 ```
 
 ## ランク
@@ -292,6 +313,11 @@ INSERT INTO raw_datas (uuid, device_id, remain_lvl, battery_lvl, opened) VALUES 
 ```sql
 update age_groups set age_group = '50代以上', upper_to = DEFAULT , updated_at = now() where age_group = '50代';
 ```
+
+```sql
+update admin_users set email = 'sample@temona.co.jp', name = 'TEMONA', updated_at = now() where id = 1;
+```
+
 # delete系
 
 # その他

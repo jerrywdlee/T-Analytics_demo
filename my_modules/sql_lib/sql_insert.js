@@ -1,7 +1,7 @@
 var SqlQueries = {
 
-  admin_users : "INSERT INTO admin_users (email, name, password, auth_id) "
-              + "VALUES ($1, $2, $3::text, $4::int)",
+  admin_users : "INSERT INTO admin_users (email, name, password, auth_id,icon_name,organization) "
+              + "VALUES ($1, $2, $3::text, $4::int,$5,$6)",
 
   auths       : "INSERT INTO auths (auth) VALUES ($1)",
 
@@ -21,12 +21,12 @@ var SqlQueries = {
               + "VALUES ($1::int, $2, $3, $4, $5, $6::float, $7::float, $8::float, $9::float)",
 
   customers   : "INSERT INTO customers ( "
-              + "name, ruby,sex_id, mail, birthday, age_group_id, tel,"
+              + "name, ruby,sex_id, mail, birthday, age_group_id, tel, customer_icon,"
               + "zip_code, country, state, city, district, area,"
-              + "location_lat, location_lng, tag ) VALUES"
+              + "location_lat, location_lng, tag ) VALUES "
               + "( $1, $2, $3::int,$4, $5::date,$6::int, $7::text,"
-              + "$8::text, $9, $10, $11, $12,"
-              + "$13, $14::float, $15::float, $16 )",
+              + "$8, $9::text, $10, $11, $12,"
+              + "$13, $14, $15::float, $16::float,$17 )",
 
   sexes       : "INSERT INTO sexes ( sex ) VALUES ($1)",
 

@@ -1,14 +1,14 @@
 [
   {
-    "auth": "god"
+    "auth": "最高管理者"
   },
   {
-    "auth": "admin"
+    "auth": "管理者"
   },
   {
-    "auth": "staff"
+    "auth": "スターフ"
   },
   {
-    "auth": "customer"
+    "auth": "会員"
   }
 ]
