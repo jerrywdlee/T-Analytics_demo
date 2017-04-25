@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>WiFi Settings</title>
+    <style>input{width: 250px}</style>
+    <style>.shop{display:none}</style>
+    <script>
+      console.log('%c TEMONA IoT ','color:#fff;background:rgba(250,151,0,1);font-size:5em');
+      console.log('%cPlease Type Under Words to Active Advance Settings.','color:#A00');
+      console.log('%c$$(\'.shop\').forEach((s)=>{s.style.display=\'table-row\'})','color:#0A0');
+    </script>
+  </head>
+
+  <body>
+    <h1>WiFi Settings</h1>
+    <form method='post'>
+    <table>
+      <tr><td>SSID : </td><td><input type='text' name='ssid' placeholder='SSID' value=''></td></tr>
+      <tr><td>PASS : </td><td><input type='text' name='pass' placeholder='Pass' value=''></td></tr>
+      <tr class='shop'><td>UUID : </td><td><input type='text' name='uuid' placeholder='UUID' value=''></td></tr>
+      <tr class='shop'><td>HOST : </td><td><input type='text' name='host' placeholder='Host' value=''></td></tr>
+      <tr class='shop'><td>WAIT : </td><td><input type='number' name='sleep' placeholder='Wait Time Sec' value=''></td></tr>
+      <tr><td></td><td><input type='submit'></td></tr>
+    </table>
+    </form>
+  </body>
+</html>

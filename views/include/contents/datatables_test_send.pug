@@ -1,0 +1,21 @@
+// better in ".col-md-12" (<div class='.col-md-12'></div>)
+.box.box-info
+  // DataTables
+  link(rel='stylesheet', href='/plugins/datatables/dataTables.bootstrap.css')
+  // DataTables
+  script(src='/plugins/datatables/jquery.dataTables.min.js')
+  script(src='/plugins/datatables/dataTables.bootstrap.min.js')
+  script(src="t_analytics/scripts/datatables_test_send.js")
+  script(src="t_analytics/scripts/get_url_params.js")
+  script.
+    console.log(GetParams())
+  //style.
+    div.container {
+        width: 80%;
+    }
+  .box-header
+    i.fa.fa-database
+    h3.box-title 端末データ一覧
+  // /.box-header
+  .box-body
+    table#datatables_test_send.table.table-bordered.table-striped.hover

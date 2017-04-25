@@ -4,7 +4,7 @@ $(document).ready(function(){
         name: '<a href="#">順天堂大学</a>',
         lat: 35.7021342,
         lng: 139.7586458,
-        icon: 't_analytics/images/ware_chu_icon.png' // TAM 東京のマーカーだけイメージを変更する
+        icon: 't_analytics/images/ware_chu_icon.png' // 
     },
       {
           name: '<a href="#">小川町駅</a>',

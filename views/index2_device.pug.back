@@ -6,14 +6,7 @@ html
     .wrapper
       include ./include/header_nav.pug
       include ./include/main-sidebar.pug
-      //include ./include/content-wrapper.pug
-      case content_wrapper
-        when "content-wrapper"
-          include ./include/content-wrapper.pug
-        when "content-wrapper_device_config"
-          include ./include/content-wrapper_device_config.pug
-        default
-          include ./include/content-wrapper.pug
+      include ./include/content-wrapper_device_config.pug
       footer.main-footer
         .pull-right.hidden-xs
           b Version

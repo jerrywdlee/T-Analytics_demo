@@ -1,0 +1,47 @@
+[
+  {
+    "uuid": "dd3292fd-5c0e-4567-95f7-7a56ca0d070d",
+    "item_id": 1,
+    "customer_id": 1,
+    "rank_id": 1,
+    "device_status_id": 5,
+    "Individual_follow_up_rank_trigger_id": 2,
+    "Individual_auto_order_trigger_id": 1
+  },
+  {
+    "uuid": "3aa04c7b-a8dc-4478-91ca-1d4772d3ae1d",
+    "item_id": 1,
+    "customer_id": 2,
+    "rank_id": 2,
+    "device_status_id": 2,
+    "Individual_follow_up_rank_trigger_id": 2,
+    "Individual_auto_order_trigger_id": 1
+  },
+  {
+    "uuid": "75eb0ccc-06b3-4a77-8f65-68918437d2f5",
+    "item_id": 1,
+    "customer_id": 3,
+    "rank_id": 3,
+    "device_status_id": 2,
+    "Individual_follow_up_rank_trigger_id": 2,
+    "Individual_auto_order_trigger_id": 1
+  },
+  {
+    "uuid": "3d0f2064-a315-460c-b4e6-fb3c744d5ac1",
+    "item_id": 2,
+    "customer_id": 4,
+    "rank_id": 1,
+    "device_status_id": 4,
+    "Individual_follow_up_rank_trigger_id": 2,
+    "Individual_auto_order_trigger_id": 1
+  },
+  {
+    "uuid": "b5aab6b9-08aa-4183-b8e3-c2dd08bcbc03",
+    "item_id": 2,
+    "customer_id": 5,
+    "rank_id": 2,
+    "device_status_id": 2,
+    "Individual_follow_up_rank_trigger_id": 2,
+    "Individual_auto_order_trigger_id": 1
+  }
+]

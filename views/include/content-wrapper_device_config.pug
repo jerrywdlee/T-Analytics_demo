@@ -1,0 +1,41 @@
+// Content Wrapper. Contains page content
+.content-wrapper
+  // Content Header (Page header)
+  section.content-header
+    h1
+      | #{page_title}
+      //small Version 2.0
+    ol.breadcrumb
+      each breadcrumb in breadcrumbs
+        if breadcrumb.name == index_config.homepage_name
+          li
+            a(href=breadcrumb.url)
+              i.fa.fa-laptop
+              |  #{breadcrumb.name}
+        else if breadcrumb.name != page_title
+          li: a(href=breadcrumb.url) #{breadcrumb.name}
+        else
+          li.active #{breadcrumb.name}
+  // Main content
+  section.content
+    // info-box row
+    .row
+      //-.col-md-12
+      include ./contents/info-boxes.pug
+    case page_class
+      when "test"
+        .row
+          .col-md-12.col-lg-12
+            // input boxes
+            include ./contents/input_send_test_md-6.pug
+        .row
+          .col-md-12.col-lg-12
+            include ./contents/datatables_test_send.pug
+      default
+        .row
+          .col-md-12.col-lg-12
+            // input boxes
+            include ./contents/input_device_md-6.pug
+        .row
+          .col-md-12
+            include ./contents/datatables_md-12.pug

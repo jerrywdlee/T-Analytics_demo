@@ -1,4 +1,6 @@
 # DB作成
+データベースの形式は：
+https://docs.google.com/spreadsheets/d/1PihDY34f4FE6L9D5gh9iJNNDMi5mAIVdDVsBW8S9iYY/edit#gid=0
 ```sql
 #psql -U postgres
 create user t_analytics with password 'postgres'; -- ユーザーの新規登録
@@ -14,6 +16,8 @@ CREATE TABLE admin_users (
                   name text,
                   password text,
                   auth_id int4,
+                  icon_name text,
+                  organization text,
                   created_at timestamp with time zone DEFAULT clock_timestamp(), -- create timestamp with zone
                   updated_at timestamp with time zone DEFAULT clock_timestamp(), -- now()はトランザクション時間
                   deleted bool not null default false);
@@ -37,8 +41,8 @@ CREATE TABLE items (
                     item_name text,
                     info_url text, -- 紹介ページ
                     purchase_url text, -- 購入URL
-                    default_follow_up_trigger text,
-                    default_auto_order_trigger text,
+                    default_follow_up_trigger_id int4,
+                    default_auto_order_trigger_id int4,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
@@ -49,10 +53,10 @@ CREATE TABLE items (
 CREATE TABLE recommend_usages (
                     id serial primary key,
                     item_id int4,
-                    open_per_morning int2 DEFAULT 0,
-                    open_per_noon int2 DEFAULT 0,
-                    open_per_night int2 DEFAULT 0,
-                    open_per_day int2 DEFAULT 0,
+                    open_per_morning float8 DEFAULT 0,
+                    open_per_noon float8 DEFAULT 0,
+                    open_per_night float8 DEFAULT 0,
+                    open_per_day float8 DEFAULT 0,
                     if_slop int2, -- 最小二乗法の傾き使うか？
                     if_intercept int2, -- 最小二乗法の切片使うか?
                     if_chi_test int2, -- カイ二乗テスト使うか？
@@ -68,10 +72,10 @@ CREATE TABLE recommend_usages (
 CREATE TABLE usages (
                     id serial primary key,
                     device_id int4,
-                    open_per_morning int2 DEFAULT 0,
-                    open_per_noon int2 DEFAULT 0,
-                    open_per_night int2 DEFAULT 0,
-                    open_per_day int2 DEFAULT 0,
+                    open_per_morning float8 DEFAULT 0,
+                    open_per_noon float8 DEFAULT 0,
+                    open_per_night float8 DEFAULT 0,
+                    open_per_day float8 DEFAULT 0,
                     slop float8,
                     intercept float8,
                     chi_test float8,
@@ -83,16 +87,35 @@ CREATE TABLE usages (
 
 ## customers（使用者）
 ```sql
-CREATE TABLE customers (
+CREATE TABLE customers (id serial primary key,
+                        name text,
+                        ruby text, -- 読み方（振仮名）
+                        sex_id int4,
+                        mail text,
+                        birthday date,
+                        age_group_id int4, -- 年代
+                        tel text,
+                        customer_icon text,
+                        zip_code text,
+                        -- address text,
+                        country text, -- 国
+                        state text, -- 都道府県
+                        city text, -- 市・区
+                        district text, -- 町・村１(東京はここまで)
+                        area text, -- 町・村２
+                        location_lat float8, -- 緯度
+                        location_lng float8, -- 経度
+                        tag text,
+                        created_at timestamp with time zone DEFAULT clock_timestamp(),
+                        updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                        deleted bool not null default false);
+```
+
+## sexes(性別の区分)
+```sql
+CREATE TABLE sexes (
                     id serial primary key,
-                    name text,
-                    ruby text, -- 読み方（振仮名）
-                    mail text,
-                    birthday date,
-                    age_group_id int4, -- 年代
-                    zip_code text,
-                    address text,
-                    tag text,
+                    sex text,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
@@ -115,16 +138,59 @@ CREATE TABLE age_groups (
 CREATE TABLE devices (
                     id serial primary key,
                     uuid text,
+                    item_id int4,
+                    customer_id int4,
                     rank_id int4,
-                    if_in_delivering int2 default 0, -- 商品配送中フラグ
-                    individual_follow_up_trigger text, -- 個別フォロアップトリガー
-                    individual_auto_order_trigger text, -- 個別自動注文トリガー
+                    device_status_id int2 default 1, -- 使用中？配送中？停止中？
+                    individual_follow_up_trigger_id int4, -- 個別フォロアップトリガー
+                    individual_auto_order_trigger_id int4, -- 個別自動注文トリガー
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
 ```
 
-## ranks(デバイスごとのランク)
+## device_statuses(デバイス状態)
+```sql
+CREATE TABLE device_statuses (
+                    id serial primary key,
+                    device_status text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
+## follow_up_triggers(フォローアップトリガー)
+```sql
+CREATE TABLE follow_up_triggers (
+                    id serial primary key,
+                    param_1 text,
+                    param_1_name text,
+                    condition text,
+                    condition_name text,
+                    param_2 text,
+                    param_2_name text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
+## auto_order_triggers(自動注文トリガー)
+```sql
+CREATE TABLE auto_order_triggers (
+                    id serial primary key,
+                    param_1 text,
+                    param_1_name text,
+                    condition text,
+                    condition_name text,
+                    param_2 text,
+                    param_2_name text,
+                    created_at timestamp with time zone DEFAULT clock_timestamp(),
+                    updated_at timestamp with time zone DEFAULT clock_timestamp(),
+                    deleted bool not null default false);
+```
+
+
+## ranks(ランクの区分)
 ```sql
 CREATE TABLE ranks (
                     id serial primary key,
@@ -143,12 +209,57 @@ CREATE TABLE raw_datas (
                     remain_lvl int8,
                     battery_lvl int8,
                     opened int2,
+                    raw_data text,
                     created_at timestamp with time zone DEFAULT clock_timestamp(),
                     updated_at timestamp with time zone DEFAULT clock_timestamp(),
                     deleted bool not null default false);
 ```
 
 # select系
+## 表示用デバイス一覧
+```sql
+SELECT dev.id, dev.uuid, item_id, item_code, item_name, customer_id, cu.name, cu.mail,
+       rank, device_status,rd.remain_lvl,rd.battery_lvl,rd.opened,
+       ft.param_1, ft.param_1_name, ft.condition, ft.condition_name, ft.param_2, ft.param_2_name,
+       ot.param_1, ot.param_1_name, ot.condition, ot.condition_name, ot.param_2, ot.param_2_name,
+       location_lat, location_lng, dev.created_at, rd.updated_at
+       from devices as dev
+LEFT JOIN items as i ON item_id = i.id
+LEFT JOIN customers as cu ON customer_id = cu.id
+LEFT JOIN ranks as r on rank_id = r.id
+LEFT JOIN device_statuses as ds on device_status_id = ds.id
+LEFT JOIN (SELECT * FROM (SELECT id, uuid,device_id, remain_lvl, battery_lvl, opened, updated_at,
+   row_number() over (partition by uuid order by updated_at DESC) as no
+   FROM raw_datas) as raw WHERE no = 1) as rd  ON dev.uuid = rd.uuid
+LEFT JOIN follow_up_triggers as ft on individual_follow_up_trigger_id = ft.id
+LEFT JOIN auto_order_triggers as ot on individual_auto_order_trigger_id = ot.id
+WHERE dev.deleted <> true and i.deleted <> true and cu.deleted <> true
+      and r.deleted <> true and ds.deleted <> true and ft.deleted <> true and ot.deleted <> true
+order by dev.updated_at desc;
+
+```
+
+## advanced_raw_datas
+```sql
+SELECT rd.id, rd.uuid, cus.name, remain_lvl, battery_lvl, opened, raw_data, rd.created_at, rd.updated_at FROM raw_datas as rd LEFT JOIN
+(SELECT cu.name as name, d.uuid as ud FROM devices as d, customers as cu WHERE d.customer_id = cu.id ) as cus ON cus.ud = rd.uuid
+```
+
+## 管理者を選択
+```sql
+SELECT * FROM admin_users as ad
+LEFT JOIN auths AS au ON auth_id = au.id WHERE ad.id = $1
+```
+
+## 顧客を選択
+```sql
+SELECT * FROM customers AS cu
+LEFT JOIN devices AS dev ON customer_id = cu.id
+LEFT JOIN ranks AS r ON rank_id = r.id
+WHERE cu.deleted <> true AND dev.deleted <> true
+AND cu.id = $1 ORDER BY rank_id limit 1;
+```
+
 # insert系
 ## auths(デフォルトの権限)
 ```sql
@@ -169,9 +280,22 @@ INSERT INTO age_groups (age_group,upper_to,lower_to) VALUES
 select * from age_groups where deleted <> true;
 ```
 
-## デバイス
+## customers（使用者）
 ```sql
-INSERT INTO devices (uuid, individual_follow_up_trigger, individual_auto_order_trigger, ) VALUES ($1::text, $2::text, $3::text);
+INSERT INTO customers ( name, ruby,sex_id, mail, birthday, age_group_id, tel,
+                        zip_code, country, state, city, district, area,
+                        location_lat, location_lng, tag ) VALUES
+                      ( $1, $2, $3::int,$4, $5::date,$6::int, $7::text,
+                        $8::text, $9, $10, $11, $12,
+                        $13, $14::float, $15::float, $16 )
+```
+## デバイス
+
+```sql
+INSERT INTO devices (uuid, item_id, customer_id, rank_id, device_status_id,
+                     individual_follow_up_trigger_id, individual_auto_order_trigger_id )
+                     VALUES ($1::text, $2::int, $3::int, $4::int, $5, $6::int, $7::int);
+
 ```
 
 ## ランク
@@ -189,6 +313,11 @@ INSERT INTO raw_datas (uuid, device_id, remain_lvl, battery_lvl, opened) VALUES 
 ```sql
 update age_groups set age_group = '50代以上', upper_to = DEFAULT , updated_at = now() where age_group = '50代';
 ```
+
+```sql
+update admin_users set email = 'sample@temona.co.jp', name = 'TEMONA', updated_at = now() where id = 1;
+```
+
 # delete系
 
 # その他
